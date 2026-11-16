@@ -1,0 +1,178 @@
+/* Scroll Reveal System */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 500ms var(--ease-editorial),
+    transform 500ms var(--ease-editorial);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Magnetic CTA */
+.magnetic {
+  transition: transform 200ms ease-out;
+  will-change: transform;
+}
+
+.magnetic:not(.btn) {
+  display: inline-block;
+}
+
+/* Interactive Card System */
+.interactive-card {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 280ms var(--ease-editorial),
+    box-shadow 280ms var(--ease-editorial),
+    border-color 220ms ease,
+    background-color 280ms ease;
+}
+
+.interactive-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--sheen-x, 50%) var(--sheen-y, 50%),
+    var(--sheen-color),
+    transparent 65%
+  );
+  transition: opacity 260ms ease;
+  z-index: 2;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card[data-variant="product"]:hover,
+  .interactive-card[data-variant="project"]:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--accent);
+  }
+
+  .interactive-card[data-variant="product"]:hover::after,
+  .interactive-card[data-variant="project"]:hover::after {
+    opacity: 1;
+  }
+
+  .interactive-card[data-variant="spec"]:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--accent);
+  }
+
+  .interactive-card[data-variant="partner"]:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+}
+
+@media (hover: none) {
+  .interactive-card:active {
+    transform: scale(0.985);
+    border-color: var(--accent);
+  }
+}
+
+/* Smooth Image Zoom on Card Hover */
+.media-zoom-img {
+  width: 100%;
+  height: 100%;
+  transition: transform 500ms var(--ease-editorial);
+}
+
+.group:hover .media-zoom-img {
+  transform: scale(1.05);
+}
+
+.media-zoom-img--subtle {
+  width: 100%;
+  height: 100%;
+  transition: transform 500ms var(--ease-editorial);
+}
+
+.group:hover .media-zoom-img--subtle {
+  transform: scale(1.03);
+}
+
+/* Clients Marquee */
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+.clients-marquee {
+  display: flex;
+  width: max-content;
+  gap: 3rem;
+  align-items: center;
+  animation: marquee-ltr 42s linear infinite;
+}
+
+html[dir="rtl"] .clients-marquee {
+  animation: marquee-rtl 42s linear infinite;
+}
+
+.clients-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Page Entrance */
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.app-main {
+  animation: page-fade-in 260ms var(--ease-editorial);
+}
+
+/* Reduced Motion Respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .interactive-card,
+  .interactive-card:hover {
+    transform: none !important;
+  }
+
+  .interactive-card::after {
+    display: none !important;
+  }
+}

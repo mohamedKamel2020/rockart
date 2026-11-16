@@ -1,0 +1,78 @@
+# ───────────────────────────────────────────────────────────────
+#  Rock Art — Apache / LiteSpeed (cPanel & most shared hosting)
+#  Upload this file next to index.html. Ignored by Live Server / Nginx.
+# ───────────────────────────────────────────────────────────────
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) HTTPS — uncomment once your SSL certificate is active
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2) One canonical host: rockart-eg.com → www.rockart-eg.com (matches canonical tags)
+  RewriteCond %{HTTP_HOST} ^rockart-eg\.com$ [NC]
+  RewriteRule ^ %{REQUEST_SCHEME}://www.rockart-eg.com%{REQUEST_URI} [L,R=301]
+
+  # 3) Old query-string detail pages → new static pages
+  RewriteCond %{QUERY_STRING} (?:^|&)sku=([^&]+)
+  RewriteRule ^product-detail\.html$ /products/%1/? [L,R=301]
+  RewriteCond %{QUERY_STRING} (?:^|&)slug=([^&]+)
+  RewriteRule ^project-detail\.html$ /projects/%1/? [L,R=301]
+
+  # 4) /index.html → /   and   /products, /projects (folders) → the list pages
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+  RewriteRule ^index\.html$ / [L,R=301]
+  RewriteRule ^(products|projects)/?$ /$1.html [L,R=301]
+
+  # 5) Never serve project internals
+  RewriteRule ^(scripts|tests|node_modules)(/|$) - [F,L]
+</IfModule>
+
+<FilesMatch "(^\.|\.(md|mjs|lock|log|sh)$|^package(-lock)?\.json$)">
+  Require all denied
+</FilesMatch>
+
+# ── Security headers ─────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+  # Uncomment ONLY after HTTPS works on the whole site:
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ── Compression ──────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/json application/javascript text/javascript image/svg+xml
+</IfModule>
+
+# ── Browser caching ──────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 day"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 1 hour"
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 day"
+  ExpiresByType text/javascript "access plus 1 day"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/avif "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType image/webp .webp
+  AddType image/avif .avif
+</IfModule>

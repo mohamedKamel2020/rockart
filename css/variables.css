@@ -1,0 +1,22 @@
+:root {
+  /* Core Rock Art Material Palette */
+  --basalt: #1C1B19;
+  --stone-grey: #5B5650;
+  --stone-grey-lt: #8C857B;
+  --terracotta: #B5562A;
+  --terracotta-deep: #7A3A1C;
+  --ink: #1C1B19;
+
+  /* Typography Families */
+  --f-display: 'Oswald', 'Tajawal', sans-serif;
+  --f-body: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
+  --f-mono: 'IBM Plex Mono', monospace;
+  --f-ar: 'Tajawal', sans-serif;
+
+  /* Layout & Scales */
+  --container-max: 1240px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-full: 9999px;
+  --ease-editorial: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
