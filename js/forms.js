@@ -1,3 +1,4 @@
+import { withBase } from './base.js';
 import { COMPANY_INFO, QUOTE_INTERESTS, REGION_OPTIONS, UI_COPY } from './data.js';
 import { buildQuoteReference, validateQuoteForm } from './engineering.js';
 import { refreshAllInteractions } from './animations.js';
@@ -12,7 +13,7 @@ import { renderBreadcrumbs, renderPageHeroBg, renderStrataDivider } from './navi
 import { buildPageUrl } from './routing.js';
 
 const QUOTES_STORAGE_KEY = 'rockart-quotes';
-const QUOTE_ENDPOINT = '/send-quote.php';
+const QUOTE_ENDPOINT = withBase('/send-quote.php');
 
 function buildSummaryText(sub, lang) {
   const interestObj = QUOTE_INTERESTS.find((q) => q.value === sub.interest);

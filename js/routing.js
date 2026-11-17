@@ -1,3 +1,4 @@
+import { stripBase, withBase } from './base.js';
 import { ALL_PRODUCTS, COMPANY_INFO, PROJECTS } from './data.js';
 
 /** Public site origin used for canonical URLs, Open Graph and structured data. */
@@ -5,7 +6,8 @@ export const SITE_URL = COMPANY_INFO.website.replace(/\/+$/, '');
 export const DEFAULT_OG_IMAGE = '/assets/images/hero_retaining_wall_1794852048110.jpg';
 
 function normalizePathname(pathname) {
-  if (!pathname || pathname === '/') return '/';
+  pathname = stripBase(pathname || '/');
+  if (pathname === '/') return '/';
   const cleaned = pathname.replace(/\/+$/, '');
   return cleaned.startsWith('/') ? cleaned : `/${cleaned}`;
 }
@@ -54,7 +56,7 @@ export function parseRoute(pathname) {
  * Generates standard static HTML hrefs so every link works seamlessly on any static server
  * as well as Node server.
  */
-export function buildPageUrl(page, param = '') {
+function routeFilePath(page, param = '') {
   switch (page) {
     case 'home':
       return '/index.html';
@@ -77,11 +79,16 @@ export function buildPageUrl(page, param = '') {
   }
 }
 
+/** Real URL of a page, including the base path when hosted in a sub-folder. */
+export function buildPageUrl(page, param = '') {
+  return withBase(routeFilePath(page, param));
+}
+
 /** Canonical (indexable) URL path of a route — always the real, crawlable URL. */
 export function getCanonicalPath(route) {
   if (route.page === 'home') return '/';
   if (route.page === 'not-found') return route.path;
-  return buildPageUrl(route.page, route.param || '');
+  return routeFilePath(route.page, route.param || '');
 }
 
 const META = {
@@ -222,7 +229,7 @@ function buildBreadcrumbs(route, lang) {
   if (route.page === 'product-detail' || route.page === 'project-detail') {
     const isProduct = route.page === 'product-detail';
     const listRoute = { page: isProduct ? 'products' : 'projects' };
-    trail.push({ name: pageLabel(listRoute, lang), path: buildPageUrl(listRoute.page) });
+    trail.push({ name: pageLabel(listRoute, lang), path: routeFilePath(listRoute.page) });
     trail.push({ name: getPageMeta(route, lang).title.split(' | ')[0], path: getCanonicalPath(route) });
   } else if (route.page !== 'home' && route.page !== 'not-found') {
     trail.push({ name: pageLabel(route, lang), path: getCanonicalPath(route) });

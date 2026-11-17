@@ -1,13 +1,17 @@
+import { withBase } from './base.js';
+
+const asset = withBase;
+
 export const GENERATED_IMAGES = {
-  heroRetainingWall: '/assets/images/hero_retaining_wall_1794852048110.jpg',
-  grcStoneCladding: '/assets/images/grc_stone_cladding_1794852049384.jpg',
-  castStonePlanters: '/assets/images/cast_stone_planters_1794852048939.jpg',
-  projectCoastalTerrace: '/assets/images/project_coastal_terrace_1794852050476.jpg',
+  heroRetainingWall: asset('/assets/images/hero_retaining_wall_1794852048110.jpg'),
+  grcStoneCladding: asset('/assets/images/grc_stone_cladding_1794852049384.jpg'),
+  castStonePlanters: asset('/assets/images/cast_stone_planters_1794852048939.jpg'),
+  projectCoastalTerrace: asset('/assets/images/project_coastal_terrace_1794852050476.jpg'),
 };
 
 export const COMPANY_VIDEO = {
   id: 'company-intro',
-  src: encodeURI('/assets/videos/شرح شركه روك ارت.mp4'),
+  src: asset(encodeURI('/assets/videos/شرح شركه روك ارت.mp4')),
   title: { en: 'Meet Rock Art — Factory, Products & Lock Stone Systems', ar: 'تعرّف على روك آرت — المصنع والمنتجات ونظام لوك ستون' },
   eyebrow: { en: 'Company Introduction', ar: 'فيديو تعريفي بالشركة' },
   description: {
@@ -18,7 +22,7 @@ export const COMPANY_VIDEO = {
 
 export const PAGE_HERO_IMAGES = {
   about: GENERATED_IMAGES.castStonePlanters,
-  lockStone: '/assets/images/187269220_138969284925527_2656797730081516784_n_971bca51.jpg',
+  lockStone: asset('/assets/images/187269220_138969284925527_2656797730081516784_n_971bca51.jpg'),
   products: GENERATED_IMAGES.grcStoneCladding,
   projects: GENERATED_IMAGES.projectCoastalTerrace,
   contact: GENERATED_IMAGES.heroRetainingWall,
@@ -26,76 +30,76 @@ export const PAGE_HERO_IMAGES = {
 
 export const UPLOADED_PHOTOS = {
   // Banded Black & Terracotta Lock Stone Retaining Wall
-  bandedWallWide: '/assets/images/188650219_138969261592196_5972776525103785045_n_1327a4d9.jpg',
-  bandedWallClose: '/assets/images/187269220_138969284925527_2656797730081516784_n_971bca51.jpg',
+  bandedWallWide: asset('/assets/images/188650219_138969261592196_5972776525103785045_n_1327a4d9.jpg'),
+  bandedWallClose: asset('/assets/images/187269220_138969284925527_2656797730081516784_n_971bca51.jpg'),
 
   // Abu Rawash Outdoor Showroom Garden & GRC Works
   gardenFountainShowroom:
-    '/assets/images/188482549_139585864863869_4142983779621323734_n_38fc53ab.jpg',
+    asset('/assets/images/188482549_139585864863869_4142983779621323734_n_38fc53ab.jpg'),
   gardenRockworkShowroom:
-    '/assets/images/187543530_139585874863868_5706292536705605131_n_fd2f3c59.jpg',
+    asset('/assets/images/187543530_139585874863868_5706292536705605131_n_fd2f3c59.jpg'),
 
   // Desert Site Lock Stone Construction & Geogrid Execution Sequence
   siteStringAndGeogridRolls:
-    '/assets/images/187593177_139591028196686_2866893865763698377_n_3a88dc55.jpg',
+    asset('/assets/images/187593177_139591028196686_2866893865763698377_n_3a88dc55.jpg'),
   siteGeogridLongCourse:
-    '/assets/images/188250498_139590978196691_1206115272104501952_n_26e2fad3.jpg',
+    asset('/assets/images/188250498_139590978196691_1206115272104501952_n_26e2fad3.jpg'),
   siteBlockPallets:
-    '/assets/images/188009112_139590964863359_6062359692633556422_n_b063b433.jpg',
+    asset('/assets/images/188009112_139590964863359_6062359692633556422_n_b063b433.jpg'),
   siteGeogridSpreadWide:
-    '/assets/images/187835260_139591018196687_8003346248840165242_n_53409696.jpg',
+    asset('/assets/images/187835260_139591018196687_8003346248840165242_n_53409696.jpg'),
   siteCrewGeogridLaying:
-    '/assets/images/188063235_139591001530022_5024931321989219636_n_db463f20.jpg',
+    asset('/assets/images/188063235_139591001530022_5024931321989219636_n_db463f20.jpg'),
   siteWaterTankerSpraying:
-    '/assets/images/187990650_139590934863362_1615886594344684144_n_85bb598c.jpg',
+    asset('/assets/images/187990650_139590934863362_1615886594344684144_n_85bb598c.jpg'),
   siteCrestCompaction:
-    '/assets/images/188179720_139591121530010_4780813895430906674_n_639cee45.jpg',
+    asset('/assets/images/188179720_139591121530010_4780813895430906674_n_639cee45.jpg'),
 
   // Factory Courtyard Sample Retaining Walls & Statuary
   courtyardSteppedPyramidFront:
-    '/assets/images/191125455_144025494419906_1433542822310704916_n_26807be7.jpg',
+    asset('/assets/images/191125455_144025494419906_1433542822310704916_n_26807be7.jpg'),
   courtyardSteppedPyramidOblique:
-    '/assets/images/192321316_144025491086573_4767294779603735628_n_231be4c2.jpg',
+    asset('/assets/images/192321316_144025491086573_4767294779603735628_n_231be4c2.jpg'),
   courtyardSoftPyramidGeogrid:
-    '/assets/images/191709371_144025481086574_3152827359385844266_n_9a1f0866.jpg',
+    asset('/assets/images/191709371_144025481086574_3152827359385844266_n_9a1f0866.jpg'),
 
   // Official Brochure Slides (Arabic Technical & Product Sheets 1–10)
   brochureSlide1About:
-    '/assets/images/160919982_112587957563660_4835820083729871587_n_c55a2479.jpg',
+    asset('/assets/images/160919982_112587957563660_4835820083729871587_n_c55a2479.jpg'),
   brochureSlide3SystemSpec:
-    '/assets/images/160930289_112587977563658_9200938297877914551_n_9ebe7e7b.jpg',
+    asset('/assets/images/160930289_112587977563658_9200938297877914551_n_9ebe7e7b.jpg'),
   brochureSlide4FoundationPart1:
-    '/assets/images/161073630_112588027563653_4607318427395941642_n_d4198a5c.jpg',
+    asset('/assets/images/161073630_112588027563653_4607318427395941642_n_d4198a5c.jpg'),
   brochureSlide5FoundationPart2:
-    '/assets/images/160951765_112588150896974_7357888284394415927_n_d2520c00.jpg',
+    asset('/assets/images/160951765_112588150896974_7357888284394415927_n_d2520c00.jpg'),
   brochureSlide6StraightMountain:
-    '/assets/images/161266531_112588274230295_2730803952508134434_n_5c676271.jpg',
+    asset('/assets/images/161266531_112588274230295_2730803952508134434_n_5c676271.jpg'),
   brochureSlide7PyramidMountain:
-    '/assets/images/160473305_112588327563623_6195469826991604062_n_0dba8163.jpg',
+    asset('/assets/images/160473305_112588327563623_6195469826991604062_n_0dba8163.jpg'),
   brochureSlide8GreekTilesSlices:
-    '/assets/images/160431452_112588310896958_6192681249478425538_n_ebbbb6f4.jpg',
+    asset('/assets/images/160431452_112588310896958_6192681249478425538_n_ebbbb6f4.jpg'),
   brochureSlide9GreekStoneGrid:
-    '/assets/images/160935991_112588347563621_99912756911722462_n_3284224f.jpg',
+    asset('/assets/images/160935991_112588347563621_99912756911722462_n_3284224f.jpg'),
   brochureSlide10CurbsGrc:
-    '/assets/images/161423217_112588374230285_4429855566428586948_n_12229cee.jpg',
+    asset('/assets/images/161423217_112588374230285_4429855566428586948_n_12229cee.jpg'),
 
   // Exhibition Booth A16 Photos
   expoWideOverview:
-    '/assets/images/469777079_986669490155498_8095820293760718252_n_25bdbebf.jpg',
+    asset('/assets/images/469777079_986669490155498_8095820293760718252_n_25bdbebf.jpg'),
   expoLockStoneSampleBoards:
-    '/assets/images/469840000_986669410155506_8441377795608501608_n_3551f32a.jpg',
+    asset('/assets/images/469840000_986669410155506_8441377795608501608_n_3551f32a.jpg'),
   expoTahyaMisrAndBoards:
-    '/assets/images/469821249_986669473488833_291861161835833174_n_2bd311d4.jpg',
+    asset('/assets/images/469821249_986669473488833_291861161835833174_n_2bd311d4.jpg'),
 
   // Individual Studio Cladding Mockups (Code Badges)
-  skuE206: '/assets/images/194993072_148566590632463_3183743901083243364_n_5a654694.jpg',
-  skuSP227: '/assets/images/194418623_148566703965785_485004585141989581_n_969406d4.jpg',
-  skuSP226: '/assets/images/194380617_148566217299167_8901555171096723615_n_80ec12e4.jpg',
-  skuG222: '/assets/images/194993072_148566443965811_2120878832873227593_n_75babed9.jpg',
-  skuG225: '/assets/images/194509914_148566437299145_3545460588210772125_n_aa88d2ff.jpg',
-  skuSP231: '/assets/images/194999119_148566473965808_1087974455208199588_n_1118ac1a.jpg',
-  skuE215: '/assets/images/195418339_148566607299128_5822778678750798587_n_539a5d3f.jpg',
-  skuSP228: '/assets/images/196093789_148566573965798_5808864361365654634_n_8e81e574.jpg',
+  skuE206: asset('/assets/images/194993072_148566590632463_3183743901083243364_n_5a654694.jpg'),
+  skuSP227: asset('/assets/images/194418623_148566703965785_485004585141989581_n_969406d4.jpg'),
+  skuSP226: asset('/assets/images/194380617_148566217299167_8901555171096723615_n_80ec12e4.jpg'),
+  skuG222: asset('/assets/images/194993072_148566443965811_2120878832873227593_n_75babed9.jpg'),
+  skuG225: asset('/assets/images/194509914_148566437299145_3545460588210772125_n_aa88d2ff.jpg'),
+  skuSP231: asset('/assets/images/194999119_148566473965808_1087974455208199588_n_1118ac1a.jpg'),
+  skuE215: asset('/assets/images/195418339_148566607299128_5822778678750798587_n_539a5d3f.jpg'),
+  skuSP228: asset('/assets/images/196093789_148566573965798_5808864361365654634_n_8e81e574.jpg'),
 };
 
 export const COMPANY_INFO = {
@@ -930,7 +934,7 @@ export const REGION_OPTIONS = [
 export const LOCK_STONE_VIDEOS = [
   {
     id: 'tahya-misr-engineering',
-    src: encodeURI('/assets/videos/شرح شركه روك ارت.mp4'),
+    src: asset(encodeURI('/assets/videos/شرح شركه روك ارت.mp4')),
     poster: UPLOADED_PHOTOS.bandedWallWide,
     title: {
       en: 'Engineering Explanation & Field Execution of the Lock Stone System — Tahya Misr 500 500 Project',
@@ -943,7 +947,7 @@ export const LOCK_STONE_VIDEOS = [
   },
   {
     id: 'lock-stone-intro',
-    src: encodeURI('/assets/videos/فيديو تعريفي للحوائط لوك ستون.mp4'),
+    src: asset(encodeURI('/assets/videos/فيديو تعريفي للحوائط لوك ستون.mp4')),
     poster: UPLOADED_PHOTOS.bandedWallClose,
     title: {
       en: 'Lock Stone Retaining Wall System — Introduction',

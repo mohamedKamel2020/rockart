@@ -164,7 +164,7 @@ export function initAboutPage(root) {
                 <span>${lang === 'ar' ? 'أرض المعارض والمعرض المفتوح بالمصنع' : 'Showroom & Exhibition Booth A16'}</span>
               </div>
               <h2 class="h2-section text-balance">
-                ${lang === 'ar' ? 'معرض أبو رواش وجناح A16 — عرض عملي لمنتجاتنا والفيبر جلاس' : 'Abu Rawash Factory Garden Showroom & Expo Booth A16'}
+                ${lang === 'ar' ? 'معرض روك آرت — عرض عملي لمنتجاتنا والفيبر جلاس' : 'Rock Art Showroom — A Hands-On Look at Our Products & Fiberglass'}
               </h2>
               <p class="section-lead">
                 ${

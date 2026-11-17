@@ -1,5 +1,5 @@
 import { toggleShortlistSku } from './engineering.js';
-import { getCanonicalPath, getPageMeta, getPageStructuredData, parseRoute, SITE_URL } from './routing.js';
+import { buildPageUrl, getCanonicalPath, getPageMeta, getPageStructuredData, parseRoute, SITE_URL } from './routing.js';
 
 const LANG_STORAGE_KEY = 'rockart-lang';
 const SHORTLIST_STORAGE_KEY = 'rockart-shortlist';
@@ -181,5 +181,5 @@ export function clearQuotePrefill() {
 
 export function navigateWithQuotePrefill(prefill) {
   setQuotePrefill(prefill);
-  window.location.href = '/contact.html';
+  window.location.href = buildPageUrl('contact');
 }

@@ -97,11 +97,14 @@ const targets = [
 ];
 
 function shell(target, meta, jsonLd) {
+  // Head links are relative to the page's folder, so they work on a domain root AND in a
+  // sub-folder (GitHub Pages: user.github.io/repo/). The app itself resolves the base at runtime.
+  const rel = '../'.repeat(target.file.split('/').length - 1);
   const canonical = `${SITE_URL}${getCanonicalPath(parseRoute(target.url))}`;
   const ogImage = `${SITE_URL}${target.image || DEFAULT_OG_IMAGE}`;
   const robots = target.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1';
   const heroPreload =
-    target.page === 'home' ? `    <link rel="preload" as="image" href="${esc(data.GENERATED_IMAGES.heroRetainingWall)}" fetchpriority="high" />\n` : '';
+    target.page === 'home' ? `    <link rel="preload" as="image" href="${rel}${esc(data.GENERATED_IMAGES.heroRetainingWall.replace(/^\//, ''))}" fetchpriority="high" />\n` : '';
   const brand = data.COMPANY_INFO.brand[LANG];
 
   return `<!doctype html>
@@ -128,13 +131,13 @@ function shell(target, meta, jsonLd) {
     <meta name="twitter:image" content="${esc(ogImage)}" />
     <meta name="theme-color" content="#FBF9F4" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="${rel}favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script src="/js/boot.js"></script>
+    <script src="${rel}js/boot.js"></script>
     <link href="${FONTS_URL}" rel="stylesheet" />
-${CSS_FILES.map((f) => `    <link rel="stylesheet" href="/css/${f}.css" />`).join('\n')}
-${heroPreload}${MODULES.map((m) => `    <link rel="modulepreload" href="/${m}" />`).join('\n')}
+${CSS_FILES.map((f) => `    <link rel="stylesheet" href="${rel}css/${f}.css" />`).join('\n')}
+${heroPreload}${MODULES.map((m) => `    <link rel="modulepreload" href="${rel}${m}" />`).join('\n')}
     <script type="application/ld+json" id="rockart-structured-data">${JSON.stringify(jsonLd).replaceAll('<', '\\u003c')}</script>
   </head>
   <body data-page="${target.page}">
@@ -143,7 +146,7 @@ ${heroPreload}${MODULES.map((m) => `    <link rel="modulepreload" href="/${m}" /
       <main id="page-root" class="app-main" tabindex="-1">__MAIN__</main>
       <div id="app-footer">__FOOTER__</div>
     </div>
-    <script type="module" src="/js/app.js"></script>
+    <script type="module" src="${rel}js/app.js"></script>
   </body>
 </html>
 `;
