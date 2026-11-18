@@ -2,16 +2,38 @@ import { withBase } from './base.js';
 
 const asset = withBase;
 
-export const GENERATED_IMAGES = {
-  heroRetainingWall: asset('/assets/images/hero_retaining_wall_1794852048110.jpg'),
-  grcStoneCladding: asset('/assets/images/grc_stone_cladding_1794852049384.jpg'),
-  castStonePlanters: asset('/assets/images/cast_stone_planters_1794852048939.jpg'),
-  projectCoastalTerrace: asset('/assets/images/project_coastal_terrace_1794852050476.jpg'),
+// Single source of truth for the Lock Stone block size (sources conflict: 45 / 45.5 / 46 x 31).
+// NOMINAL size, shown with a "per approved shop drawings, +/-1 cm" note. One-line change later.
+export const LOCK_STONE_BLOCK_SIZE = {
+  value: '20 × 30 × 45 cm',
+  compact: '20×30×45 cm',
+  note: {
+    en: 'H × D × L, per approved shop drawings, ±1 cm',
+    ar: 'ارتفاع × عمق × طول، حسب الرسومات التنفيذية المعتمدة، ±1 سم',
+  },
 };
+
+// Real client photos (WebP, max 1600 px). Captions stay generic: we do not know which project each belongs to.
+export const SITE_PHOTOS = {
+  terracedTurfCurvedEdge: asset('/assets/images/terraced-turf-curved-edge.webp'),
+  curvedSteppedWallA: asset('/assets/images/curved-stepped-wall-a.webp'),
+  curvedSteppedWallB: asset('/assets/images/curved-stepped-wall-b.webp'),
+  steppedWallTrees: asset('/assets/images/stepped-wall-trees.webp'),
+  terracedTurfVertical: asset('/assets/images/terraced-turf-vertical.webp'),
+  terracedTurfPlaza: asset('/assets/images/terraced-turf-plaza.webp'),
+  terracedTurfWide: asset('/assets/images/terraced-turf-wide.webp'),
+  terracedTurfLandscape: asset('/assets/images/terraced-turf-landscape.webp'),
+  terracedTurfPlazaTower: asset('/assets/images/terraced-turf-plaza-tower.webp'),
+  beigeLockstoneGarden: asset('/assets/images/beige-lockstone-garden.webp'),
+  blockTwoHolesGrass: asset('/assets/images/block-two-holes-grass.webp'),
+  blockFaceTop: asset('/assets/images/block-face-top.webp'),
+};
+// The five AI-generated stock scenes were removed from the site and from assets/images.
 
 export const COMPANY_VIDEO = {
   id: 'company-intro',
-  src: asset(encodeURI('/assets/videos/شرح شركه روك ارت.mp4')),
+  src: asset(encodeURI('/assets/videos/CompanyProfile.mp4')),
+  poster: asset('/assets/images/posters/company-profile.jpg'),
   title: { en: 'Meet Rock Art — Factory, Products & Lock Stone Systems', ar: 'تعرّف على روك آرت — المصنع والمنتجات ونظام لوك ستون' },
   eyebrow: { en: 'Company Introduction', ar: 'فيديو تعريفي بالشركة' },
   description: {
@@ -20,12 +42,15 @@ export const COMPANY_VIDEO = {
   },
 };
 
+// Hero background chosen by the owner for every page (it is an AI-generated image: see CONTENT_TODO.md).
+export const HERO_IMAGE = asset('/assets/images/hero_retaining_wall_1794852048110.jpg');
+
 export const PAGE_HERO_IMAGES = {
-  about: GENERATED_IMAGES.castStonePlanters,
-  lockStone: asset('/assets/images/187269220_138969284925527_2656797730081516784_n_971bca51.jpg'),
-  products: GENERATED_IMAGES.grcStoneCladding,
-  projects: GENERATED_IMAGES.projectCoastalTerrace,
-  contact: GENERATED_IMAGES.heroRetainingWall,
+  about: asset('/assets/images/469840000_986669410155506_8441377795608501608_n_3551f32a.jpg'),
+  lockStone: asset('/assets/projects/project-25-stone-wall-villas-wide.webp'),
+  products: asset('/assets/images/469777079_986669490155498_8095820293760718252_n_25bdbebf.jpg'),
+  projects: SITE_PHOTOS.terracedTurfPlazaTower,
+  contact: SITE_PHOTOS.terracedTurfLandscape,
 };
 
 export const UPLOADED_PHOTOS = {
@@ -66,18 +91,6 @@ export const UPLOADED_PHOTOS = {
   // Official Brochure Slides (Arabic Technical & Product Sheets 1–10)
   brochureSlide1About:
     asset('/assets/images/160919982_112587957563660_4835820083729871587_n_c55a2479.jpg'),
-  brochureSlide3SystemSpec:
-    asset('/assets/images/160930289_112587977563658_9200938297877914551_n_9ebe7e7b.jpg'),
-  brochureSlide4FoundationPart1:
-    asset('/assets/images/161073630_112588027563653_4607318427395941642_n_d4198a5c.jpg'),
-  brochureSlide5FoundationPart2:
-    asset('/assets/images/160951765_112588150896974_7357888284394415927_n_d2520c00.jpg'),
-  brochureSlide6StraightMountain:
-    asset('/assets/images/161266531_112588274230295_2730803952508134434_n_5c676271.jpg'),
-  brochureSlide7PyramidMountain:
-    asset('/assets/images/160473305_112588327563623_6195469826991604062_n_0dba8163.jpg'),
-  brochureSlide8GreekTilesSlices:
-    asset('/assets/images/160431452_112588310896958_6192681249478425538_n_ebbbb6f4.jpg'),
   brochureSlide9GreekStoneGrid:
     asset('/assets/images/160935991_112588347563621_99912756911722462_n_3284224f.jpg'),
   brochureSlide10CurbsGrc:
@@ -147,33 +160,39 @@ export const HERO_CONTENT = {
     ar: 'بجودة تدوم',
   },
   description: {
-    en: 'Rock Art designs and manufactures patented double-reinforced Lock Stone retaining walls, GRC decorative cladding, and cast-stone planters — engineered to hold, built to be seen.',
+    en: 'Rock Art manufactures cement construction products, including the patented Lock Stone retaining-wall blocks, and designs and executes interior and exterior decor works for buildings, villas and palaces.',
     ar: 'شركة روك آرت متخصصة في تصنيع المنتجات الأسمنتية اللازمة للبناء، وتشمل بلوك الكيستون (الحوائط الساندة)، بالإضافة إلى تصميم وتنفيذ أعمال الديكور الداخلي والخارجي للعمائر والفيلات والقصور.',
   },
   stats: [
     {
-      value: '20m+',
-      label: { en: 'Max wall height supported', ar: 'أقصى ارتفاع للحائط' },
+      value: '12m+',
+      label: { en: 'Wall height with proper soil reinforcement', ar: 'ارتفاع الحائط مع تدعيم جيد للتربة' },
     },
     {
-      value: '250 kg/cm²',
-      label: { en: 'Block compressive strength', ar: 'مقاومة الضغط للبلوك' },
+      value: '2018/1412',
+      label: { en: 'Patent registration no.', ar: 'رقم تسجيل البراءة' },
     },
     {
-      value: '30+',
-      label: { en: 'Contracting partners', ar: 'شركة مقاولات شريكة' },
+      value: '15+',
+      label: { en: 'Major projects delivered', ar: 'مشروعاً كبيراً تم تنفيذه' },
     },
     {
-      value: 'ASTM·ISO',
-      label: { en: 'Tested & certified', ar: 'مختبر ومعتمد' },
+      value: '60-160 kN/m',
+      label: { en: 'Geogrid tensile strength range', ar: 'مدى مقاومة الشد للجيوجريد' },
     },
   ],
+  /* UNVERIFIED (removed pending client proof; restore only with documents):
+     { value: '20m+', ... 'Max wall height supported' }
+     { value: '250 kg/cm²', ... 'Block compressive strength' }
+     { value: '30+', ... 'Contracting partners' }
+     { value: 'ASTM·ISO', ... 'Tested & certified' }
+  */
 };
 
 export const ABOUT_CONTENT = {
   eyebrow: {
-    en: 'Since Kilo 26, Abu Rawash',
-    ar: 'منذ التأسيس بالكيلو 26، أبو رواش',
+    en: 'Kilo 26, Abu Rawash',
+    ar: 'الكيلو 26، أبو رواش',
   },
   headline: {
     en: 'A factory built on rock, run like an engineering office.',
@@ -181,7 +200,7 @@ export const ABOUT_CONTENT = {
   },
   paragraphs: {
     en: [
-      'Rock Art is an Egyptian manufacturer of cement construction products — interlocking pavers, cement curbs, modern floor and pavement tiles (City Black) and our patented Lock Stone retaining-wall blocks — made at our own factory in Abu Rawash.',
+      'Rock Art is an Egyptian manufacturer of cement construction products — interlocking pavers, cement curbs, modern floor and pavement tiles (City Block) and our patented Lock Stone retaining-wall blocks — made at our own factory in Abu Rawash.',
       'We also design and install interior and exterior GRC and GRP works for apartment buildings, villas and palaces, landscape the adjoining gardens, and cast Greek, Spanish and English court-style tiles for cladding walls in a wide range of finishes.',
     ],
     ar: [
@@ -190,31 +209,25 @@ export const ABOUT_CONTENT = {
     ],
   },
   certifications: [
-    {
-      id: 'hbrc',
-      title: { en: 'HBRC Lab Tested', ar: 'مختبر بحوث الإسكان' },
-      subtitle: { en: 'ASTM C140 / C1372-17', ar: 'معتمد طبقاً للمواصفة الأمريكية' },
-      detail: {
-        en: 'Independently tested by the Housing and Building National Research Center (HBRC) for structural block compressive strength and water absorption.',
-        ar: 'مختبر ومعتمد من المركز القومي لبحوث الإسكان والبناء (HBRC) لمقاومة الضغط والامتصاص طبقاً للمواصفات القياسية الأمريكية.',
-      },
-    },
+    /* UNVERIFIED (HBRC card removed; no certificate supplied by the client):
+       title: 'HBRC Lab Tested' / subtitle 'ASTM C140 / C1372-17' / compressive strength and water absorption claim.
+    */
     {
       id: 'patent',
       title: { en: 'Patented System', ar: 'نظام مسجل ببراءة اختراع' },
       subtitle: { en: 'Reg. No. 2018/1412', ar: 'رقم التسجيل 2018/1412' },
       detail: {
-        en: 'Egyptian patent protection covering the interlocking Lock Stone mortise-and-tenon block profile and double-reinforced assembly.',
-        ar: 'حماية براءة اختراع مصرية لتصميم بلوك الكيستون المتداخل بنظام التعشيق والتسليح المزدوج.',
+        en: 'Lock Stone blocks owned by Rock Art, registered with the scientific research authority under patent registration no. 2018/1412.',
+        ar: 'بلوكات لوك ستون الخاصة بشركة روك آرت، المسجلة بالبحث العلمي برقم تسجيل 2018/1412 لبراءات الاختراع.',
       },
     },
     {
       id: 'geogrid',
-      title: { en: 'ISO & ASTM Geogrid', ar: 'شبكات جيوغريد معتمدة' },
-      subtitle: { en: 'G-TEX, Saudi Arabia', ar: 'جي-تكس، السعودية' },
+      title: { en: 'HDPE Uniaxial Geogrid', ar: 'شبكات جيوجريد HDPE أحادية الاتجاه' },
+      subtitle: { en: 'G-TEX Latifia UG RW', ar: 'جي-تكس لطيفية UG RW' },
       detail: {
-        en: 'Paired with certified G-TEX structural polyester geogrid meshes ranging from 60 to 160 kN/m tensile capacity.',
-        ar: 'مزود بشبكات جيوغريد معتمدة من شركة جي-تكس بقدرات شد تبدأ من 60 وتصل إلى 160 كيلو نيوتن/متر.',
+        en: 'G-TEX (Dammam, Saudi Arabia, ISO 9001:2015 certified) Latifia UG RW mono-oriented HDPE uniaxial geogrids, grades UG60 to UG160 with an ultimate tensile strength of 60 to 160 kN/m (ASTM D6637 / ISO 10319).',
+        ar: 'شبكات جيوجريد أحادية الاتجاه من البولي إيثيلين عالي الكثافة (HDPE) من جي-تكس (الدمام، السعودية، الحاصلة على ISO 9001:2015)، فئات UG60 حتى UG160 بمقاومة شد قصوى من 60 إلى 160 كيلو نيوتن/م (ASTM D6637 / ISO 10319).',
       },
     },
   ],
@@ -223,32 +236,32 @@ export const ABOUT_CONTENT = {
       code: '01',
       title: { en: 'Lock Stone & Retaining Systems', ar: 'أنظمة الحوائط الساندة (كيستون)' },
       description: {
-        en: 'Patented double-reinforced Lock Stone retaining wall blocks engineered for roads, terraced compounds, and heights over 20 meters.',
-        ar: 'بلوكات الكيستون المزدوجة التسليح للحوائط الساندة المصممة للطرق والمشروعات المدرجة بارتفاعات تتجاوز 20 متراً.',
+        en: 'Patented double-reinforced Lock Stone retaining wall blocks engineered for roads, terraced compounds, and heights over 12 meters with proper soil reinforcement.',
+        ar: 'بلوكات الكيستون المزدوجة التسليح للحوائط الساندة المصممة للطرق والمشروعات المدرجة بارتفاعات تتجاوز 12 متراً مع تدعيم جيد للتربة.',
       },
     },
     {
       code: '02',
-      title: { en: 'Paving, Curbs & City Black', ar: 'الإنترلوك والبردورات وسيتي بلاك' },
+      title: { en: 'Paving, Curbs & City Block', ar: 'الإنترلوك والبردورات وسيتي بلاك' },
       description: {
-        en: 'High-density interlocking paving stone, concrete curbs, modern floor tiles, and heavy-duty City Black pavement units.',
-        ar: 'بلاط الإنترلوك المتداخل، البردورات الأسمنتية، وبلاط الأرضيات الحديث والأرصفة سيتي بلاك عالية الكثافة.',
+        en: 'Interlocking paving stone, cement curbs, modern floor tiles, and City Block pavement units.',
+        ar: 'بلاط الإنترلوك المتداخل، البردورات الأسمنتية، وبلاط الأرضيات الحديث والأرصفة سيتي بلاك.',
       },
     },
     {
       code: '03',
       title: { en: 'GRC & GRP Architectural Works', ar: 'أعمال جي آر سي وجي آر بي المعمارية' },
       description: {
-        en: 'Custom interior and exterior decorative works for villas and palaces, artificial rock design, GRC lakes, and landscape coordination.',
-        ar: 'تصميم وتنفيذ أعمال الديكور الداخلي والخارجي للفلل والقصور، الصخور الصناعية، البحيرات، وتنسيق الحدائق.',
+        en: 'Design and execution of interior and exterior GRC and GRP decorative works for apartment buildings, villas and palaces, plus landscaping.',
+        ar: 'تصميم وتنفيذ أعمال الجي آر سي والجي آر بي الداخلية والخارجية للعمائر والفيلات والقصور، مع تنسيق الحدائق.',
       },
     },
     {
       code: '04',
       title: { en: 'Greek, Spanish & English Cladding', ar: 'البلاط الصناعي اليوناني والأسباني والإنجليزي' },
       description: {
-        en: 'In-house cast stone and brick-face panels color-matched to architectural elevations for both exterior facades and interiors.',
-        ar: 'تصنيع ألواح الحجر والطوب الصناعي بألوان مطابقة حسب الطلب لتجليد الواجهات والحوائط الداخلية والخارجية.',
+        en: 'Greek, Spanish and English artificial tiles for cladding walls, interior and exterior, in a wide range of finishes.',
+        ar: 'بلاط صناعي يوناني وأسباني وإنجليزي لتجليد الحوائط الداخلية والخارجية بأشكال وتشطيبات متعددة.',
       },
     },
   ],
@@ -261,72 +274,94 @@ export const LOCK_STONE_SYSTEM = {
     ar: 'نظام بلوك الكيستون للحوائط الساندة',
   },
   description: {
-    en: 'A double-reinforced retaining wall system — horizontally and vertically — engineered for strength, complete safety, and an elegant architectural face. Walls can reach heights over 20 meters with proper soil support.',
-    ar: 'نظام حوائط ساندة مزدوج التسليح أفقياً ورأسياً، يتميز بالقوة والأمان التام، إلى جانب مظهر معماري أنيق وجذاب. يمكن أن يصل ارتفاع الحوائط إلى أكثر من 20 متراً مع تدعيم جيد للتربة.',
+    en: 'A double-reinforced retaining wall system — horizontally and vertically — engineered for strength, complete safety, and an elegant architectural face. Walls can reach more than 12 meters with proper soil reinforcement.',
+    ar: 'نظام حوائط ساندة مزدوج التسليح أفقياً ورأسياً، يتميز بالقوة والأمان التام، إلى جانب مظهر معماري أنيق وجذاب. يمكن أن يصل ارتفاع الحوائط إلى أكثر من 12 متراً مع تدعيم جيد للتربة.',
   },
   specs: [
-    { label: { en: 'Block dimensions (H × D × L)', ar: 'أبعاد البلوك (ارتفاع × عمق × طول)' }, value: '20 × 30 × 45.5 cm' },
-    { label: { en: 'Compressive strength', ar: 'مقاومة الضغط' }, value: '≥ 250 kg/cm²' },
+    {
+      label: { en: 'Block dimensions (H × D × L), per approved shop drawings ±1 cm', ar: 'أبعاد البلوك (ارتفاع × عمق × طول) حسب الرسومات المعتمدة ±1 سم' },
+      value: LOCK_STONE_BLOCK_SIZE.value,
+    },
     { label: { en: 'Vertical fiberglass bars', ar: 'أسياخ الفيبر جلاس الرأسية' }, value: '⌀12 / ⌀14 mm' },
-    { label: { en: 'Shear pins per block', ar: 'بنوز الربط لكل بلوك' }, value: '2 × ⌀13 × 130 mm' },
-    { label: { en: 'Geogrid mesh rating', ar: 'تصنيف شبكة الجيوغريد' }, value: '60 / 75 / 90 / 120 / 140 / 160 kN/m' },
-    { label: { en: 'Core concrete fill', ar: 'خرسانة ملء القلب' }, value: '350 kg/m² of wall face' },
-    { label: { en: 'Patent registration', ar: 'رقم البراءة' }, value: 'EG 2018/1412' },
+    {
+      label: { en: 'Pins per block', ar: 'أسياخ التثبيت لكل بلوك' },
+      value: { en: '2 glass-fibre/epoxy FRP pins', ar: 'عدد 2 سيخ FRP (ألياف زجاج/إيبوكسي)' },
+    },
+    { label: { en: 'Geogrid (G-TEX HDPE uniaxial)', ar: 'الجيوجريد (HDPE أحادي الاتجاه من جي-تكس)' }, value: '60 / 75 / 90 / 120 / 140 / 160 kN/m' },
+    {
+      label: { en: 'Block cores', ar: 'قلب البلوك' },
+      value: { en: 'Gravel-filled; concrete + FRP rods only in the top course', ar: 'مملوء بالحصى؛ خرسانة وأسياخ FRP في المدماك العلوي فقط' },
+    },
+    {
+      label: { en: 'PC footing (thickness × width), per approved drawings', ar: 'القاعدة الخرسانية (سمك × عرض) حسب الرسومات المعتمدة' },
+      value: '20 cm × 60 cm',
+    },
+    {
+      label: { en: 'Compaction', ar: 'الدمك' },
+      value: { en: '95% Standard Proctor, lifts ≤ 30 cm', ar: '95% بروكتور قياسي، طبقات ≤ 30 سم' },
+    },
+    { label: { en: 'Patent registration', ar: 'رقم تسجيل البراءة' }, value: '2018/1412' },
   ],
+  /* UNVERIFIED (removed pending client proof):
+     Compressive strength: >= 250 kg/cm²
+     Shear pins per block: 2 x ⌀13 x 130 mm  (sources conflict with ⌀12 x 15 cm)
+     Core concrete fill: 350 kg/m² of wall face
+  */
   steps: [
     {
       course: '01',
-      label: { en: 'Course 01', ar: 'المرحلة 01' },
-      title: { en: 'Soil replacement', ar: 'الإحلال' },
+      label: { en: 'Stage 01', ar: 'المرحلة 01' },
+      title: { en: 'Foundation preparation', ar: 'تجهيز الأساس' },
       description: {
-        en: 'Weak soil under the wall line is removed and replaced with selected fill, compacted in layers to the density required by the geotechnical report, giving a stable load-bearing base before any block is laid.',
-        ar: 'إزالة التربة الضعيفة أسفل خط الحائط واستبدالها بردم مختار يُدمك على طبقات حتى الكثافة المطلوبة في التقرير الجيوتقني، لتجهيز أساس مستقر قادر على تحمل الأحمال قبل وضع أول بلوك.',
+        en: 'Survey the wall line and excavate to the embedment depth (5% of wall height, minimum 50 cm). Level the base with sand and a 25 cm crushed-stone bed, then cast a smooth, level PC pad 20 cm thick × 60 cm wide.',
+        ar: 'رفع الحائط مساحياً والحفر حتى عمق الدفن (5% من ارتفاع الحائط وبحد أدنى 50 سم)، ثم تسوية القاعدة بالرمل وفرش طبقة حجر مكسّر بسمك 25 سم، وصب قاعدة خرسانية عادية ناعمة ومستوية بسمك 20 سم وعرض 60 سم.',
       },
       specCallout: {
-        en: 'Multi-stage soil compaction & sub-base stabilization',
-        ar: 'دمك وتثبيت طبقات التربة على مراحل قبل التأسيس',
+        en: 'PC pad 20 cm × 60 cm, per approved drawings · embedment 5% of height, min 50 cm',
+        ar: 'قاعدة خرسانية 20 × 60 سم حسب الرسومات المعتمدة · الدفن 5% من الارتفاع وبحد أدنى 50 سم',
       },
     },
     {
       course: '02',
-      label: { en: 'Course 02', ar: 'المرحلة 02' },
-      title: { en: 'Concrete footing', ar: 'القاعدة الخرسانية' },
+      label: { en: 'Stage 02', ar: 'المرحلة 02' },
+      title: { en: 'First course and pins', ar: 'المدماك الأول وأسياخ التثبيت' },
       description: {
-        en: 'A concrete footing 20cm thick is poured under the first course. Its width (0.6m to 1.2m) and reinforcement follow the approved drawings and calculation notes of each wall.',
-        ar: 'يتم صب قاعدة خرسانية بسمك 20 سم أسفل أول مدماك، ويُحدد عرضها (من 0.6 إلى 1.2 متر) وتسليحها وفقاً للرسومات ومذكرة الحسابات المعتمدة لكل حائط على حدة.',
+        en: 'Align the first course with a string line (a guide for curves) and check level side to side and front to back, because it sets the alignment of the whole wall. Place the FRP pins before any backfilling so the pin holes are not blocked, fill the block cores with gravel and clean the tops.',
+        ar: 'ضبط المدماك الأول بخيط التسوية (أو دليل للمنحنيات) وفحص الميزان أفقياً ورأسياً، فهو يحدد استقامة الحائط بالكامل. تركيب أسياخ FRP قبل أي ردم حتى لا تنسد الفتحات، وملء قلب البلوكات بالحصى وتنظيف الأسطح العلوية.',
       },
       specCallout: {
-        en: 'Footing: 0.6–1.2m width × 20cm thick, engineered per wall',
-        ar: 'قاعدة خرسانية بعرض 0.6–1.2 م وسمك 20 سم طبقاً للحسابات الهندسية',
+        en: `${LOCK_STONE_BLOCK_SIZE.compact} blocks · 2 FRP pins per block · gravel-filled cores`,
+        ar: `بلوك ${LOCK_STONE_BLOCK_SIZE.compact} · عدد 2 سيخ FRP لكل بلوك · قلب مملوء بالحصى`,
       },
     },
     {
       course: '03',
-      label: { en: 'Course 03', ar: 'المرحلة 03' },
-      title: { en: 'Laying the blocks', ar: 'رص البلوك' },
+      label: { en: 'Stage 03', ar: 'المرحلة 03' },
+      title: { en: 'Drainage, backfill and compaction', ar: 'الصرف والردم والدمك' },
       description: {
-        en: 'The first course of Rock Art’s interlocking Lock Stone blocks is laid — the interlocking system with fiberglass pins that bonds every course to the next.',
-        ar: 'يتم رص أول مدماك من بلوكات الكيستون المتداخلة الخاصة بشركة روك آرت، باستخدام نظام التعشيق وبنوز الفيبر جلاس لربط كل مدماك بالذي يليه.',
+        en: 'Place geotextile and 30 cm of fine gravel directly behind the wall, with a 4" perforated PVC pipe every 6 m at the wall base, wrapped in geotextile, sloped and covered with clean gravel. Backfill the reinforced zone with clean sand (fines ≤ 5%), never soil near the wall. Compact in lifts of 30 cm or less to 95% Standard Proctor, using a plate compactor for the first 1 m behind the wall.',
+        ar: 'فرش الجيوتكستايل و30 سم من الحصى الناعم خلف الحائط مباشرة، مع ماسورة PVC مثقبة 4 بوصة كل 6 م عند قاعدة الحائط ملفوفة بالجيوتكستايل بميل للصرف ومغطاة بالحصى النظيف. ردم منطقة التسليح برمل نظيف (نسبة الدقائق ≤ 5%) وعدم استخدام التربة بالقرب من الحائط. الدمك على طبقات 30 سم أو أقل حتى 95% بروكتور قياسي، بماكينة دمك صفائحية لأول 1 م خلف الحائط.',
       },
       specCallout: {
-        en: '20 × 30 × 45.5 cm interlocking courses with 2 fiberglass pins per block',
-        ar: 'مداميك بلوك 20 × 30 × 45.5 سم مترابطة بنظام التعشيق وبنزين فيبر جلاس لكل بلوك',
+        en: 'Geotextile + 30 cm gravel · 4" drain every 6 m · 30 cm lifts at 95% Proctor',
+        ar: 'جيوتكستايل + 30 سم حصى · صرف 4 بوصة كل 6 م · طبقات 30 سم بدمك 95% بروكتور',
       },
     },
     {
       course: '04',
-      label: { en: 'Course 04', ar: 'المرحلة 04' },
-      title: { en: 'Reinforcement & backfill', ar: 'التسليح والردم' },
+      label: { en: 'Stage 04', ar: 'المرحلة 04' },
+      title: { en: 'Geogrid and repeat to the top', ar: 'الجيوجريد والتكرار حتى القمة' },
       description: {
-        en: 'Non-metallic fiberglass bars are fixed vertically inside the blocks with reinforced concrete every 60cm of wall height. Geogrid mesh is spread per the engineering design, hooked, then backfilled and compacted every 30cm.',
-        ar: 'يتم تثبيت أسياخ الفيبر جلاس (البديل اللامعدني للحديد) رأسياً داخل البلوكات وتدعيمها بالخرسانة المسلحة كل 60 سم من ارتفاع الحائط، مع فرد شبكة الجيوغريد حسب التصميم الهندسي وتثبيتها، ثم الردم والدمك كل 30 سم.',
+        en: 'Lay the G-TEX geogrid flat on the compacted fill, fixed at the front on 15 cm FRP pins and at the back with a steel bar, pulled taut. Place the next course with staggered joints and repeat to the required height. The top course is an RC base with an insulation layer, blocks filled with concrete and FRP rods, and cap stones fixed with adhesive.',
+        ar: 'فرد شبكة الجيوجريد من جي-تكس أفقياً فوق الردم المدموك، وتثبيتها من الأمام بأسياخ FRP بطول 15 سم ومن الخلف بسيخ حديد، مع شدها جيداً. وضع المدماك التالي بتبادل الفواصل وتكرار الخطوات حتى الارتفاع المطلوب. المدماك العلوي: قاعدة خرسانة مسلحة مع طبقة عزل، وبلوكات مملوءة بالخرسانة وأسياخ FRP، وأحجار تغطية مثبتة باللاصق.',
       },
       specCallout: {
-        en: '⌀12/14 fiberglass + 350 kg/m² concrete every 60cm · G-TEX Geogrid · 30cm compaction lifts',
-        ar: 'فيبر جلاس ⌀12/14 + خرسانة كل 60 سم · شبكات جيوغريد · ردم ودمك كل 30 سم',
+        en: 'G-TEX HDPE geogrid 60–160 kN/m · staggered courses · RC top course + cap stones',
+        ar: 'جيوجريد HDPE من جي-تكس 60–160 كيلو نيوتن/م · مداميك متبادلة · مدماك علوي بخرسانة مسلحة وأحجار تغطية',
       },
     },
   ],
+  /* UNVERIFIED (old stage set removed; 'Soil replacement' and 'concrete every 60cm / 350 kg/m²' are not in the Method of Statement). */
 };
 
 export const CLADDING_PRODUCTS = [
@@ -485,8 +520,8 @@ export const PLANTER_PRODUCTS = [
     typeLabel: { en: 'Cast-Stone Planter', ar: 'أصيص خرساني' },
     name: { en: 'Cylinder Grey', ar: 'أسطواني رمادي' },
     description: {
-      en: 'Architectural heavy-walled cylindrical concrete planter for courtyards and commercial plazas.',
-      ar: 'أصيص خرساني أسطواني ثقيل الجدران للساحات والحدائق والمداخل التجارية.',
+      en: 'Cylindrical concrete planter for courtyards and gardens.',
+      ar: 'أصيص خرساني أسطواني للساحات والحدائق.',
     },
     finishNote: {
       en: 'Cast in fiber-reinforced concrete with integrated drainage port and weather-sealed matte stone finish.',
@@ -495,7 +530,7 @@ export const PLANTER_PRODUCTS = [
     dimensions: '90 × 100 cm',
     styleOrigin: { en: 'Cast-Stone Garden Range', ar: 'تشكيلة أصص الحدائق' },
     colors: ['#7B766E', '#5B5650', '#9D978E'],
-    image: GENERATED_IMAGES.castStonePlanters,
+    image: UPLOADED_PHOTOS.gardenFountainShowroom,
   },
   {
     sku: 'POT-04',
@@ -503,8 +538,8 @@ export const PLANTER_PRODUCTS = [
     typeLabel: { en: 'Cast-Stone Planter', ar: 'أصيص خرساني' },
     name: { en: 'Ribbed Barrel', ar: 'برميل مخدد' },
     description: {
-      en: 'Vertically fluted barrel planter tailored for villa terraces, hotel lobbies, and coastal walkways.',
-      ar: 'أصيص برميلي مخدد رأسياً مثالي لتراسات الفيلات ولوبي الفنادق والممرات الساحلية.',
+      en: 'Vertically fluted barrel planter for terraces, lobbies and walkways.',
+      ar: 'أصيص برميلي مخدد رأسياً للتراسات والمداخل والممرات.',
     },
     finishNote: {
       en: 'Precision-molded vertical ribs cast in solid stone-grey concrete.',
@@ -513,7 +548,7 @@ export const PLANTER_PRODUCTS = [
     dimensions: '55 × 90 cm',
     styleOrigin: { en: 'Cast-Stone Garden Range', ar: 'تشكيلة أصص الحدائق' },
     colors: ['#8C857B', '#67625A', '#ABA499'],
-    image: GENERATED_IMAGES.castStonePlanters,
+    image: UPLOADED_PHOTOS.gardenFountainShowroom,
   },
   {
     sku: 'POT-01D',
@@ -521,8 +556,8 @@ export const PLANTER_PRODUCTS = [
     typeLabel: { en: 'Cast-Stone Planter', ar: 'أصيص خرساني' },
     name: { en: 'Cylinder Grey XL', ar: 'أسطواني رمادي كبير' },
     description: {
-      en: 'Oversized specimen tree planter engineered for mature olive trees and landscape focal points.',
-      ar: 'أصيص كبير الحجم مصمم لأشجار الزيتون المعمرة ونقاط الارتكاز في تنسيق الحدائق.',
+      en: 'Large-size planter for landscape focal points.',
+      ar: 'أصيص كبير الحجم لنقاط الارتكاز في تنسيق الحدائق.',
     },
     finishNote: {
       en: 'Extra-large monolithic cylinder cast with internal reinforcement mesh.',
@@ -531,7 +566,7 @@ export const PLANTER_PRODUCTS = [
     dimensions: '110 × 125 cm',
     styleOrigin: { en: 'Cast-Stone Garden Range', ar: 'تشكيلة أصص الحدائق' },
     colors: ['#69645D', '#4A4640', '#8C857B'],
-    image: GENERATED_IMAGES.castStonePlanters,
+    image: UPLOADED_PHOTOS.gardenFountainShowroom,
   },
   {
     sku: 'GARDEN-RANGE',
@@ -570,14 +605,14 @@ export const PROJECTS = [
       ar: 'مدرجات حوائط ساندة بنظام لوك ستون تدمج مساطب الزراعة والتنسيق مع طبقات الردم المدموكة.',
     },
     scope: {
-      en: 'Soil replacement, reinforced concrete footing, interlocking block erection, and terrace turf integration.',
-      ar: 'أعمال الإحلال، القاعدة الخرسانية المسلحة، رص البلوكات المتداخلة، وتنسيق المساطب.',
+      en: 'Foundation preparation, PC footing, interlocking block erection, drainage and backfill, and terrace turf integration.',
+      ar: 'تجهيز الأساس، القاعدة الخرسانية، رص البلوكات المتداخلة، الصرف والردم، وتنسيق المساطب.',
     },
-    specs: ['Lock Stone 20×30×45.5 cm', '⌀14 Fiberglass Bars', 'G-TEX Geogrid Mesh'],
-    image: GENERATED_IMAGES.heroRetainingWall,
+    specs: [`Lock Stone ${LOCK_STONE_BLOCK_SIZE.compact}`, '⌀12 / ⌀14 FRP Bars', 'G-TEX HDPE Geogrid'],
+    image: SITE_PHOTOS.terracedTurfLandscape,
     gallery: [
       {
-        src: GENERATED_IMAGES.heroRetainingWall,
+        src: SITE_PHOTOS.terracedTurfLandscape,
         caption: {
           en: 'Completed terraced Lock Stone wall elevation',
           ar: 'الواجهة المنفذة لحوائط لوك ستون المدرجة',
@@ -600,6 +635,104 @@ export const PROJECTS = [
     ],
   },
   {
+    slug: 'tahya-misr-500-500-wall',
+    category: 'retaining',
+    categoryLabel: { en: 'Retaining Walls', ar: 'الحوائط الساندة' },
+    title: { en: 'Tahya Misr 500 500 Wall', ar: 'حائط تحيا مصر 500 500' },
+    caption: { en: 'White Lock Stone wall carrying the Tahya Misr 500 500 sign', ar: 'حائط لوك ستون أبيض يحمل لافتة تحيا مصر 500 500' },
+    summary: { en: 'A white Lock Stone wall at the Hospital 500500 project in Sheikh Zayed. It carries the Tahya Misr 500 500 sign, so the wall is also the project’s signboard.', ar: 'حائط لوك ستون أبيض ضمن مشروع مستشفى 500 500 بالشيخ زايد، يحمل لافتة تحيا مصر 500 500، فيجمع الجدار واللافتة في عنصر واحد.' },
+    scope: { en: 'Lock Stone block wall with a white face.', ar: 'حائط من بلوكات لوك ستون بوجه أبيض.' },
+    specs: ['White Lock Stone Face', 'Tahya Misr 500 500 Sign', 'Sheikh Zayed'],
+    image: asset('/assets/images/egyptian-wall-500500.webp'),
+    gallery: [
+      { src: asset('/assets/images/egyptian-wall-500500.webp'), caption: { en: 'The Tahya Misr 500 500 sign on a white Lock Stone wall', ar: 'لافتة تحيا مصر 500 500 على حائط لوك ستون أبيض' } },
+    ],
+  },
+  {
+    slug: 'curved-white-lock-stone-wall',
+    category: 'retaining',
+    categoryLabel: { en: 'Retaining Walls', ar: 'الحوائط الساندة' },
+    title: { en: 'Curved White Lock Stone Wall', ar: 'حائط لوك ستون أبيض منحنٍ' },
+    caption: { en: 'Curved white Lock Stone wall with a stepped top edge', ar: 'حائط لوك ستون أبيض منحنٍ بحافة علوية متدرجة' },
+    summary: { en: 'A Lock Stone wall faced in light blocks and built to a rounded plan, with the top edge stepping down along the curve.', ar: 'حائط لوك ستون بوجه فاتح منفذ بمسقط دائري، وحافته العلوية تتدرج مع انحناء الحائط.' },
+    scope: { en: 'Block courses laid to a guide line, with the first course checked for level and alignment.', ar: 'رص مداميك البلوك على دليل للمنحنى، مع ضبط ميزان واستقامة المدماك الأول.' },
+    specs: ['Curved Plan', 'Stepped Top Edge', 'Light Block Face'],
+    image: asset('/assets/projects/project-04-curved-white-wall-sand.webp'),
+    gallery: [
+      { src: asset('/assets/projects/project-04-curved-white-wall-sand.webp'), caption: { en: 'Curved white Lock Stone wall', ar: 'حائط لوك ستون أبيض منحنٍ' } },
+      { src: asset('/assets/projects/project-21-curved-white-wall-blue-sky.webp'), caption: { en: 'Curved wall under a blue sky', ar: 'حائط منحنٍ تحت سماء صافية' } },
+    ],
+  },
+  {
+    slug: 'stone-walls-with-stairs',
+    category: 'retaining',
+    categoryLabel: { en: 'Retaining Walls', ar: 'الحوائط الساندة' },
+    title: { en: 'Stone-Faced Walls with Stairs', ar: 'حوائط حجرية بسلالم' },
+    caption: { en: 'Split-face stone retaining walls flanking stair flights', ar: 'حوائط ساندة حجرية على جانبي السلالم' },
+    summary: { en: 'Split-face stone retaining walls on both sides of stair flights, photographed during construction with geotextile laid on the steps.', ar: 'حوائط ساندة بوجه حجري مشقوق على جانبي السلالم، مصورة أثناء التنفيذ مع فرش الجيوتكستايل على الدرجات.' },
+    scope: { en: 'Retaining walls beside stair flights with geotextile layers and paving at the foot.', ar: 'حوائط ساندة بجوار السلالم مع طبقات جيوتكستايل وبلاط في أسفلها.' },
+    specs: ['Split-Face Stone Finish', 'Stair Flights', 'Geotextile Layers'],
+    image: asset('/assets/projects/project-10-stone-wall-stairs-wide.webp'),
+    gallery: [
+      { src: asset('/assets/projects/project-10-stone-wall-stairs-wide.webp'), caption: { en: 'Stone walls flanking a stair, wide view', ar: 'حائطان حجريان على جانبي سلم، منظر واسع' } },
+      { src: asset('/assets/projects/project-01-stone-wall-stairs-geotextile.webp'), caption: { en: 'Stone wall with stairs and geotextile', ar: 'حائط حجري مع سلالم وجيوتكستايل' } },
+      { src: asset('/assets/projects/project-07-stone-wall-stairs-paving.webp'), caption: { en: 'Stair between two stone walls, with paving', ar: 'سلم بين حائطين حجريين مع بلاط' } },
+      { src: asset('/assets/projects/project-05-stone-wall-bench-balustrade.webp'), caption: { en: 'Stone wall with bench blocks and balustrade', ar: 'حائط حجري مع بلوكات مقاعد وسور' } },
+    ],
+  },
+  {
+    slug: 'geogrid-reinforcement-works',
+    category: 'retaining',
+    categoryLabel: { en: 'Retaining Walls', ar: 'الحوائط الساندة' },
+    title: { en: 'Geogrid Reinforcement and Backfill Works', ar: 'أعمال تسليح الجيوجريد والردم' },
+    caption: { en: 'Geogrid laid on compacted fill behind Lock Stone walls', ar: 'شبكات جيوجريد مفرودة على ردم مدموك خلف حوائط لوك ستون' },
+    summary: { en: 'Site works behind Lock Stone walls: geogrid laid flat on compacted fill, backfill placed in layers, and heavy machinery for excavation and compaction.', ar: 'أعمال موقعية خلف حوائط لوك ستون: شبكات جيوجريد مفرودة أفقياً على ردم مدموك، وردم على طبقات، ومعدات ثقيلة للحفر والدمك.' },
+    scope: { en: 'Geogrid fixed on pins and laid taut, then backfill and compaction in layers of 30 cm or less.', ar: 'تثبيت الجيوجريد على الأسياخ وشده جيداً، ثم الردم والدمك على طبقات 30 سم أو أقل.' },
+    specs: ['G-TEX HDPE Geogrid', 'Layered Backfill', 'Heavy-Machinery Compaction'],
+    image: asset('/assets/projects/project-27-geogrid-large-slope.webp'),
+    gallery: [
+      { src: asset('/assets/projects/project-27-geogrid-large-slope.webp'), caption: { en: 'Geogrid across a large slope', ar: 'شبكة جيوجريد على منحدر كبير' } },
+      { src: asset('/assets/projects/project-09-geogrid-slope-beside-wall.webp'), caption: { en: 'Geogrid on a slope beside a wall', ar: 'جيوجريد على منحدر بجوار حائط' } },
+      { src: asset('/assets/projects/project-11-geogrid-backfill-site.webp'), caption: { en: 'Geogrid and backfill on site', ar: 'جيوجريد وأعمال الردم بالموقع' } },
+      { src: asset('/assets/projects/project-16-wall-geogrid-drainage-houses.webp'), caption: { en: 'Wall with geogrid and drainage works', ar: 'حائط بأعمال جيوجريد وصرف' } },
+      { src: asset('/assets/projects/project-28-curved-wall-geogrid-drainage.webp'), caption: { en: 'Curved wall with geogrid and drainage', ar: 'حائط منحنٍ بجيوجريد وصرف' } },
+      { src: asset('/assets/projects/project-14-excavation-trench-heavy-machinery.webp'), caption: { en: 'Excavation trench with heavy machinery', ar: 'خندق حفر بمعدات ثقيلة' } },
+    ],
+  },
+  {
+    slug: 'large-grey-lock-stone-walls',
+    category: 'retaining',
+    categoryLabel: { en: 'Retaining Walls', ar: 'الحوائط الساندة' },
+    title: { en: 'Large Grey Lock Stone Walls', ar: 'حوائط لوك ستون رمادية كبيرة' },
+    caption: { en: 'Large grey Lock Stone walls, straight and curved', ar: 'حوائط لوك ستون رمادية كبيرة، مستقيمة ومنحنية' },
+    summary: { en: 'Large grey Lock Stone walls with long straight runs and curves, including a crew working along the top of the wall.', ar: 'حوائط لوك ستون رمادية كبيرة بامتدادات مستقيمة ومنحنيات، منها صورة لفريق يعمل على قمة الحائط.' },
+    scope: { en: 'Block courses with staggered joints, run along straight and curved lines.', ar: 'مداميك بلوك بتبادل الفواصل على خطوط مستقيمة ومنحنية.' },
+    specs: ['Grey Block Face', 'Staggered Joints', 'Straight and Curved Runs'],
+    image: asset('/assets/projects/project-18-curved-grey-wall-large.webp'),
+    gallery: [
+      { src: asset('/assets/projects/project-18-curved-grey-wall-large.webp'), caption: { en: 'Large curved grey Lock Stone wall', ar: 'حائط لوك ستون رمادي منحنٍ كبير' } },
+      { src: asset('/assets/projects/project-24-long-grey-wall-wide-angle.webp'), caption: { en: 'Long grey wall, wide angle', ar: 'حائط رمادي طويل بزاوية واسعة' } },
+      { src: asset('/assets/projects/project-20-crew-on-grey-wall.webp'), caption: { en: 'Crew working on a grey wall', ar: 'فريق يعمل على حائط رمادي' } },
+      { src: asset('/assets/projects/project-15-long-white-wall.webp'), caption: { en: 'Long white Lock Stone wall', ar: 'حائط لوك ستون أبيض طويل' } },
+    ],
+  },
+  {
+    slug: 'stone-walls-beside-villas',
+    category: 'retaining',
+    categoryLabel: { en: 'Retaining Walls', ar: 'الحوائط الساندة' },
+    title: { en: 'Stone Retaining Walls Beside Villas', ar: 'حوائط ساندة حجرية بجوار فيلات' },
+    caption: { en: 'Stone retaining walls running alongside villas and landscaping', ar: 'حوائط ساندة حجرية بجوار فيلات وتنسيق حدائق' },
+    summary: { en: 'Stone-faced retaining walls running beside villas, with planted slopes above and an unpaved access road below.', ar: 'حوائط ساندة بوجه حجري بجوار فيلات، مع منحدرات مزروعة أعلاها وطريق ترابي أسفلها.' },
+    scope: { en: 'Long retaining wall runs separating the landscaped level from the access road.', ar: 'امتدادات حوائط ساندة طويلة تفصل المستوى المنسق عن طريق الخدمة.' },
+    specs: ['Stone-Faced Wall', 'Landscaped Slope', 'Long Wall Runs'],
+    image: asset('/assets/projects/project-25-stone-wall-villas-wide.webp'),
+    gallery: [
+      { src: asset('/assets/projects/project-25-stone-wall-villas-wide.webp'), caption: { en: 'Stone wall near villas', ar: 'حائط حجري بجوار فيلات' } },
+      { src: asset('/assets/projects/project-26-collage-two-walls-villas.webp'), caption: { en: 'Two stone walls near villas', ar: 'حائطان حجريان بجوار فيلات' } },
+      { src: asset('/assets/projects/project-02-collage-wall-villas-and-curb-trench.webp'), caption: { en: 'Retaining wall beside villas and a curb trench', ar: 'جدار ساند بجوار فيلات وخندق بردورة' } },
+    ],
+  },
+  {
     slug: 'banded-boundary-wall',
     category: 'retaining',
     categoryLabel: { en: 'Retaining Walls', ar: 'الحوائط الساندة' },
@@ -609,14 +742,14 @@ export const PROJECTS = [
       ar: 'حائط ساند مزدوج التسليح بألوان متبادلة',
     },
     summary: {
-      en: 'Architectural boundary retaining wall executed in alternating terracotta, basalt charcoal, and stone grey Lock Stone strata.',
-      ar: 'حائط ساند حدودي منفذ بمداميك متبادلة من ألوان التيراكوتا والفحم البازلتي والرمادي الحجري.',
+      en: 'Architectural boundary retaining wall executed in alternating terracotta, charcoal and grey Lock Stone courses.',
+      ar: 'حائط ساند حدودي منفذ بمداميك متبادلة من ألوان التيراكوتا والفحمي والرمادي.',
     },
     scope: {
-      en: 'Double-reinforced wall assembly with custom pigment-batched Lock Stone blocks.',
-      ar: 'نظام حائط ساند مزدوج التسليح ببلوكات لوك ستون ملونة حسب التصميم المعماري.',
+      en: 'Double-reinforced Lock Stone wall in alternating block colours.',
+      ar: 'حائط لوك ستون مزدوج التسليح ببلوكات بألوان متبادلة.',
     },
-    specs: ['Double-Reinforced System', '350 kg/m² Concrete Pour', 'Custom Terracotta & Basalt Pigments'],
+    specs: ['Double-Reinforced System', 'Gravel-Filled Block Cores', 'Terracotta & Charcoal Bands'],
     image: UPLOADED_PHOTOS.bandedWallWide,
     gallery: [
       {
@@ -645,14 +778,14 @@ export const PROJECTS = [
       ar: 'صخور جي آر سي صناعية بحديقة عرض المصنع',
     },
     summary: {
-      en: 'Sculpted GRC artificial rock formations, grottos and garden benches, as built in the Abu Rawash showroom garden.',
-      ar: 'تصميم وتنفيذ صخور ومغارات جي آر سي صناعية ومقاعد حدائق منحوتة، كما في حديقة عرض مصنع أبو رواش.',
+      en: 'GRC artificial rock formations and garden benches, as built in the Abu Rawash showroom garden.',
+      ar: 'تصميم وتنفيذ صخور جي آر سي صناعية ومقاعد حدائق، كما في حديقة عرض مصنع أبو رواش.',
     },
     scope: {
-      en: 'Custom design, casting and hand-carving of GRC rock and garden elements.',
-      ar: 'تصميم وصب ونحت عناصر الجي آر سي الصخرية وعناصر الحدائق حسب الطلب.',
+      en: 'Design and casting of GRC rock and garden elements.',
+      ar: 'تصميم وصب عناصر الجي آر سي الصخرية وعناصر الحدائق.',
     },
-    specs: ['Custom GRC Formwork', 'Hand-Carved Rock Finish', 'Garden Features & Benches'],
+    specs: ['GRC Rock Elements', 'Artificial Rock Finish', 'Garden Features & Benches'],
     image: UPLOADED_PHOTOS.gardenRockworkShowroom,
     gallery: [
       {
@@ -671,6 +804,7 @@ export const PROJECTS = [
       },
     ],
   },
+  /* UNVERIFIED (Seashell Development removed: not in the client's portfolio, AI image):
   {
     slug: 'seashell-development',
     category: 'cladding',
@@ -689,10 +823,10 @@ export const PROJECTS = [
       ar: 'تصنيع ألواح الحجر الصناعي بألوان مطابقة وتنفيذ أعمال التكسية للواجهات.',
     },
     specs: ['GRC Stone Cladding', 'UV-Stable Pigments', 'Coastal Facade Spec'],
-    image: GENERATED_IMAGES.grcStoneCladding,
+    image: UPLOADED_PHOTOS.skuE206,
     gallery: [
       {
-        src: GENERATED_IMAGES.grcStoneCladding,
+        src: UPLOADED_PHOTOS.skuE206,
         caption: {
           en: 'Installed multi-tone GRC stone ledger facade cladding',
           ar: 'تركيب ألواح التكسية الحجرية متعددة الدرجات على الواجهات',
@@ -707,6 +841,7 @@ export const PROJECTS = [
       },
     ],
   },
+  */
   {
     slug: 'multi-level-terracing',
     category: 'retaining',
@@ -789,7 +924,7 @@ export const PROJECTS = [
       ar: 'توريد وتركيب ألواح الطوب الإنجليزي E-209 بلمسة رملية.',
     },
     specs: ['E-209 English Brick', 'Running-Bond Pattern', 'Weather-Sealed Finish'],
-    image: GENERATED_IMAGES.grcStoneCladding,
+    image: UPLOADED_PHOTOS.skuE206,
     gallery: [
       {
         src: UPLOADED_PHOTOS.skuE215,
@@ -821,10 +956,10 @@ export const PROJECTS = [
       ar: 'بلوكات لوك ستون المتداخلة من إنتاج مصنع الكيلو 26 بأبو رواش، موردة للموقع ومشونة بطول خط الحائط جاهزة للرص.',
     },
     scope: {
-      en: 'Factory casting, curing, ASTM C140/C1372-17 testing, and site fleet dispatch.',
-      ar: 'الصب والمعالجة في المصنع، الاختبار طبقاً لمواصفات ASTM، والشحن المباشر للموقع.',
+      en: 'Factory casting, curing, and site dispatch.',
+      ar: 'الصب والمعالجة في المصنع والشحن المباشر للموقع.',
     },
-    specs: ['250 kg/cm² Compressive Strength', 'ASTM C140 / C1372-17', 'Abu Rawash Factory Stock'],
+    specs: ['Interlocking Lock Stone Blocks', 'Terracotta Finish', 'Abu Rawash Factory Stock'],
     image: UPLOADED_PHOTOS.siteBlockPallets,
     gallery: [
       {
@@ -854,7 +989,7 @@ export const PROJECTS = [
       ar: 'صب بأبعاد قياسية أو مخصصة بتشطيب حجري مقاوم للعوامل الجوية.',
     },
     specs: ['POT-01C / POT-01D / POT-04', '90×100 cm to 110×125 cm', 'Cast Concrete'],
-    image: GENERATED_IMAGES.castStonePlanters,
+    image: UPLOADED_PHOTOS.gardenFountainShowroom,
   },
   {
     slug: 'full-terrace-elevation',
@@ -888,20 +1023,18 @@ export const PROJECTS = [
 ];
 
 export const CLIENTS = [
-  'Hassan Allam Properties',
+  'Hassan Allam',
   'Palm Hills',
-  'Trustcom Contracting',
-  'Al-Badawi Company',
-  'Petrojet',
-  'Mabrotec Contracting',
-  'Nile Valley Contracting',
-  'M.SQUARED',
-  'Al Sharif Contracting',
-  'Concord Company',
+  'SODIC',
+  'M-Squared',
+  'Alamein Co. (العالمين)',
   'Al Ahly Club',
-  'AGCO',
-  'Nasr City Contracting',
-  'Intro Group',
+  'Marbotec (ماربوتك)',
+  'Al Batal (البطل)',
+  /* UNVERIFIED (not in the client's documented portfolio; restore only with proof):
+     'Trustcom Contracting', 'Al-Badawi Company', 'Petrojet', 'Nile Valley Contracting',
+     'Al Sharif Contracting', 'Concord Company', 'AGCO', 'Nasr City Contracting', 'Intro Group'
+  */
 ];
 
 export const QUOTE_INTERESTS = [
@@ -935,20 +1068,20 @@ export const LOCK_STONE_VIDEOS = [
   {
     id: 'tahya-misr-engineering',
     src: asset(encodeURI('/assets/videos/شرح شركه روك ارت.mp4')),
-    poster: UPLOADED_PHOTOS.bandedWallWide,
+    poster: asset('/assets/images/egyptian-wall-500500.webp'),
     title: {
       en: 'Engineering Explanation & Field Execution of the Lock Stone System — Tahya Misr 500 500 Project',
       ar: 'الشرح الهندسي والتنفيذ الميداني لنظام لوك ستون — مشروع تحيا مصر 500 500',
     },
     description: {
-      en: 'A practical walkthrough from the factory yard and the execution sites: block shapes and colours, Patent 1412/2018, the Tahya Misr 500 500 wall, and the double-reinforced construction stages.',
-      ar: 'شرح عملي من ساحة المصنع والمواقع التنفيذية: أشكال وألوان بلوك الكيستون، براءة الاختراع 1412/2018، حائط تحيا مصر 500 500، ومراحل التنفيذ بالتسليح المزدوج.',
+      en: 'A practical walkthrough from the factory yard and the execution sites: block shapes and colours, Patent 2018/1412, the Tahya Misr 500 500 wall, and the double-reinforced construction stages.',
+      ar: 'شرح عملي من ساحة المصنع والمواقع التنفيذية: أشكال وألوان بلوك الكيستون، براءة الاختراع 2018/1412، حائط تحيا مصر 500 500، ومراحل التنفيذ بالتسليح المزدوج.',
     },
   },
   {
     id: 'lock-stone-intro',
     src: asset(encodeURI('/assets/videos/فيديو تعريفي للحوائط لوك ستون.mp4')),
-    poster: UPLOADED_PHOTOS.bandedWallClose,
+    poster: asset('/assets/images/posters/lock-stone-intro.jpg'),
     title: {
       en: 'Lock Stone Retaining Wall System — Introduction',
       ar: 'فيديو تعريفي بنظام الحوائط الساندة لوك ستون',
@@ -962,76 +1095,28 @@ export const LOCK_STONE_VIDEOS = [
 
 export const LOCK_STONE_FACE_PROFILES = [
   {
-    id: 'profile-straight-mountain',
-    src: UPLOADED_PHOTOS.brochureSlide6StraightMountain,
-    title: {
-      en: 'Straight & Mountain Split-Face Profiles',
-      ar: 'الوجه العدل والكسر الجبلي (Mountain)',
-    },
-    caption: {
-      en: 'Brochure Slide 6: Lock Stone block with straight flat face (left) and textured split mountain face (right).',
-      ar: 'نشرات روك آرت (لوحة 6): بلوك كيستون بواجهة عدلة ملساء وبواجهة الكسر الجبلي الخشنة.',
-    },
+    id: 'profile-straight',
+    src: asset('/assets/images/face-straight.webp'),
+    title: { en: 'Straight face', ar: 'الوجه المستقيم' },
+    caption: { en: 'Lock Stone wall with a flat, straight block face.', ar: 'حائط لوك ستون بواجهة بلوك مستقيمة ملساء.' },
   },
   {
-    id: 'profile-pyramid-mountain',
-    src: UPLOADED_PHOTOS.brochureSlide7PyramidMountain,
-    title: {
-      en: 'Soft Pyramid & Mountain Interface Profiles',
-      ar: 'الوجه الهرمي الناعم والواجهة الجبلية',
-    },
-    caption: {
-      en: 'Brochure Slide 7: Soft chamfered pyramid facade (left) and rugged rocky mountain interface (right).',
-      ar: 'نشرات روك آرت (لوحة 7): واجهة هرمية ناعمة الحواف وواجهة جبلية متعددة البروز.',
-    },
+    id: 'profile-mountain',
+    src: asset('/assets/images/face-mountain.webp'),
+    title: { en: 'Mountain split face', ar: 'واجهة الكسر الجبلي' },
+    caption: { en: 'Textured split mountain face, available in more than one colour.', ar: 'واجهة جبلية خشنة (كسر جبلي) متوفرة بأكثر من لون.' },
   },
   {
-    id: 'profile-greek-cladding',
-    src: UPLOADED_PHOTOS.brochureSlide8GreekTilesSlices,
-    title: {
-      en: 'Lock Stone with Greek Tiles & Greek Slices',
-      ar: 'بلوك كيستون مكسو بالبلاط اليوناني والشرائح',
-    },
-    caption: {
-      en: 'Brochure Slide 8: Structural Lock Stone blocks faced with natural-look Greek cladding tiles and slim horizontal slices.',
-      ar: 'نشرات روك آرت (لوحة 8): بلوكات حوائط ساندة مدمجة بواجهة البلاط اليوناني أو شرائح الحجر الرفيعة.',
-    },
+    id: 'profile-greek-tiles',
+    src: asset('/assets/images/face-greek-tiles.webp'),
+    title: { en: 'Greek tile cladding', ar: 'تكسية بالبلاط اليوناني' },
+    caption: { en: 'Lock Stone blocks faced with Greek-style cladding tiles (3D illustration).', ar: 'بلوكات لوك ستون مكسوة بالبلاط اليوناني (رسم ثلاثي الأبعاد).' },
   },
   {
-    id: 'spec-system-dimensions',
-    src: UPLOADED_PHOTOS.brochureSlide3SystemSpec,
-    title: {
-      en: 'Block Hardware — 20×30×45.5 cm & ⌀13×130mm Pins',
-      ar: 'مكونات المنظومة: 20×30×45.5 سم ومسامير فيبر 13×130مم',
-    },
-    caption: {
-      en: 'Brochure Slide 3: Interlocking block section paired with 2 fiberglass shear pins per block (13mm × 130mm) and HDPE UV-resistant uniaxial geogrid.',
-      ar: 'نشرات روك آرت (لوحة 3): الأبعاد التفصيلية ومسمارا فيبر جلاس لكل بلوك وشبكة البولي إيثيلين عالية الكثافة المقاومة للأشعة فوق البنفسجية.',
-    },
-  },
-  {
-    id: 'prep-foundation-1-5',
-    src: UPLOADED_PHOTOS.brochureSlide4FoundationPart1,
-    title: {
-      en: 'Foundation Prep Diagram (Steps 1–5)',
-      ar: 'إعدادات الأساس والفرشة التأسيسية (خطوات 1–5)',
-    },
-    caption: {
-      en: 'Brochure Slide 4: 5% wall height embedment, 60×20 cm concrete pad diagram, total station survey, leveling sand, and 25 cm crushed stone bed.',
-      ar: 'نشرات روك آرت (لوحة 4): عمق التأسيس 5% من ارتفاع الحائط، فرشة خرسانية 60×20 سم، أعمال المساحة، تسوية الرمل وطبقة 25 سم من السن.',
-    },
-  },
-  {
-    id: 'prep-foundation-6-10',
-    src: UPLOADED_PHOTOS.brochureSlide5FoundationPart2,
-    title: {
-      en: 'Pinning, Compaction & Geogrid Trim (Steps 6–10)',
-      ar: 'تثبيت البنوز والدمك وقص الجيوغريد (خطوات 6–10)',
-    },
-    caption: {
-      en: 'Brochure Slide 5: Placing both fiberglass pins per block, roller compaction, geogrid spreading, 50–60mm center-cut margin, and surface brushing.',
-      ar: 'نشرات روك آرت (لوحة 5): تركيب بنزي الفيبر جلاس في كل بلوك، الدمك بالهراس، فرد الجيوغريد وقصه بعيداً عن الحواف 50–60 مم وتنظيف السطح.',
-    },
+    id: 'profile-greek-slices',
+    src: asset('/assets/images/face-greek-slices.webp'),
+    title: { en: 'Greek slice cladding', ar: 'تكسية بشرائح يونانية' },
+    caption: { en: 'Lock Stone blocks faced with slim horizontal Greek slices (3D illustration).', ar: 'بلوكات لوك ستون مكسوة بشرائح يونانية رفيعة أفقية (رسم ثلاثي الأبعاد).' },
   },
 ];
 
@@ -1127,8 +1212,8 @@ export const SHOWROOM_AND_EXPO_GALLERY = [
     id: 'expo-fiberglass',
     src: UPLOADED_PHOTOS.expoTahyaMisrAndBoards,
     title: {
-      en: 'Egypt’s First Fiberglass Bar Plant & Tahya Misr 500 500 Showcase',
-      ar: 'أول مصنع في أفريقيا والشرق الأوسط لأسياخ الفيبر جلاس وعرض تحيا مصر 500 500',
+      en: 'Rock Art pavilion A16, fibreglass bars and Tahya Misr 500 500 display',
+      ar: 'جناح روك آرت A16: أسياخ الفايبر جلاس وعرض تحيا مصر 500 500',
     },
     caption: {
       en: 'Booth display featuring non-metallic fiberglass reinforcement hoops & mats alongside the completed Tahya Misr 500 500 retaining project banner.',
@@ -1462,20 +1547,20 @@ export const UI_COPY = {
     ar: 'ألواح التكسية الحجرية والطوب الصناعي والأصص الخرسانية',
   },
   claddingLead: {
-    en: 'Manufactured in Greek, Spanish, and English court styles alongside weatherproof cast-concrete planters and garden fountains.',
-    ar: 'مصنعة بالطرز اليونانية والأسبانية والإنجليزية مع تشكيل أصص ونوافير الحدائق الخرسانية المقاومة للعوامل الجوية.',
+    en: 'Greek, Spanish and English artificial tiles for wall cladding, alongside cast-stone planters and garden fountains.',
+    ar: 'بلاط صناعي يوناني وأسباني وإنجليزي لتجليد الحوائط، إلى جانب أصص ونوافير الحدائق الخرسانية.',
   },
   planterSectionTitle: {
     en: 'Cast-Stone Planters & Garden Accents',
     ar: 'أصص خرسانية ونوافير وتنسيق حدائق',
   },
   planterSectionLead: {
-    en: 'Heavy-duty cast-stone cylinders, ribbed amphoras, and classical fountains for villas, compounds, and commercial lobbies.',
-    ar: 'أصص خرسانية مسلحة عالية المتانة، جرار مضلعة، ونوافير كلاسيكية مصممة للفلل والمشروعات السياحية والتجارية.',
+    en: 'Cast-stone cylinders, ribbed barrels and classical fountains for villas, compounds and lobbies.',
+    ar: 'أصص خرسانية أسطوانية ومخددة ونوافير كلاسيكية للفلل والمشروعات والمداخل.',
   },
   projectsEyebrow: { en: 'Track Record', ar: 'سجل الأعمال' },
   projectsHeading: { en: 'Projects built across Egypt', ar: 'مشروعات منفذة في جميع أنحاء مصر' },
-  clientsEyebrow: { en: 'Selected Contracting Partners', ar: 'شركاء النجاح وشركات المقاولات' },
+  clientsEyebrow: { en: 'Selected Clients & Partners', ar: 'من عملائنا وشركائنا' },
   contactEyebrow: { en: 'Engineering & Sales', ar: 'الهندسة والمبيعات' },
   contactHeading: { en: 'Start a Structural or Cladding Brief', ar: 'ابدأ دراسة مشروعك أو اطلب عرض سعر' },
   contactLead: {
@@ -1494,3 +1579,105 @@ export const UI_COPY = {
   formSubmit: { en: 'Send Quote Request', ar: 'إرسال طلب عرض السعر' },
 };
 
+
+
+// ---- P2 content (facts from the Method of Statement and the client's brochure only) ----
+export const LOCK_STONE_EXTRA = {
+  anatomy: {
+    eyebrow: { en: 'Block Anatomy', ar: 'مكونات البلوك' },
+    title: { en: 'Anatomy of a Lock Stone block', ar: 'تشريح بلوك لوك ستون' },
+    photo: { src: SITE_PHOTOS.blockTwoHolesGrass, width: 1280, height: 960, alt: { en: 'Lock Stone block showing its two pin holes', ar: 'بلوك لوك ستون يوضح فتحتي أسياخ التثبيت' } },
+    points: [
+      { en: 'Trapezoidal block profile that interlocks course to course.', ar: 'قطاع شبه منحرف يتعشق مع المدماك الذي يليه.' },
+      { en: 'Two pin holes per block, one FRP pin in each.', ar: 'فتحتان لكل بلوك، يوضع في كل منهما سيخ FRP واحد.' },
+      { en: 'Gravel-filled core, with the tops cleaned before the next course.', ar: 'قلب البلوك مملوء بالحصى مع تنظيف السطح العلوي قبل المدماك التالي.' },
+      { en: `Nominal size ${LOCK_STONE_BLOCK_SIZE.value} (${LOCK_STONE_BLOCK_SIZE.note.en}).`, ar: `المقاس الاسمي ${LOCK_STONE_BLOCK_SIZE.value} (${LOCK_STONE_BLOCK_SIZE.note.ar}).` },
+    ],
+  },
+  drainage: {
+    eyebrow: { en: 'Drainage & Compaction', ar: 'الصرف والدمك' },
+    title: { en: 'Keeping water out and the fill dense', ar: 'تصريف المياه ودمك الردم' },
+    cards: [
+      { title: { en: 'Drain pipe', ar: 'ماسورة الصرف' }, text: { en: '4" perforated PVC pipe every 6 m at the wall base, wrapped in geotextile, sloped, and covered with clean gravel.', ar: 'ماسورة PVC مثقبة 4 بوصة كل 6 م عند قاعدة الحائط، ملفوفة بالجيوتكستايل ومائلة للصرف ومغطاة بالحصى النظيف.' } },
+      { title: { en: 'Geotextile + gravel', ar: 'جيوتكستايل وحصى' }, text: { en: '30 cm of fine gravel with geotextile directly behind the wall. No soil near the wall, to avoid water retention.', ar: '30 سم من الحصى الناعم مع الجيوتكستايل خلف الحائط مباشرة، دون استخدام التربة بالقرب من الحائط لمنع احتباس المياه.' } },
+      { title: { en: 'Clean sand', ar: 'رمل نظيف' }, text: { en: 'The reinforced zone is backfilled with clean sand, fines not above 5%.', ar: 'تردم منطقة التسليح برمل نظيف لا تزيد نسبة الدقائق فيه على 5%.' } },
+      { title: { en: 'Compaction', ar: 'الدمك' }, text: { en: 'Lifts of 30 cm or less at 95% Standard Proctor. Plate compactor for the first 1 m behind the wall, the largest practical compactor beyond it.', ar: 'طبقات 30 سم أو أقل بنسبة 95% بروكتور قياسي. ماكينة دمك صفائحية لأول 1 م خلف الحائط، وأكبر ماكينة ممكنة بعد ذلك.' } },
+    ],
+    photos: [
+      { src: asset('/assets/images/188539360_139591008196688_6404296255395645944_n_bbbbc417.jpg'), width: 960, height: 1150, caption: { en: 'Geogrid laid flat on compacted fill', ar: 'شبكة جيوجريد مفرودة أفقياً فوق ردم مدموك' } },
+      { src: asset('/assets/images/187990650_139591094863346_8994469899080939827_n_bae1c599.jpg'), width: 960, height: 1150, caption: { en: 'Backfill and compaction in progress behind the wall', ar: 'أعمال الردم والدمك خلف الحائط' } },
+    ],
+  },
+  curved: {
+    eyebrow: { en: 'Curved & Stepped Walls', ar: 'الحوائط المنحنية والمدرجة' },
+    title: { en: 'Curves, steps and terraces', ar: 'منحنيات ومدرجات وتراسات' },
+    photos: [
+      { src: asset('/assets/images/egyptian-wall-500500.webp'), width: 1600, height: 900, caption: { en: 'The Tahya Misr 500 500 wall: a white Lock Stone face that carries the project sign, structure and signboard in one.', ar: 'حائط تحيا مصر 500 500: واجهة لوك ستون بيضاء تحمل لافتة المشروع، فتجتمع الإنشاء واللافتة في جدار واحد.' } },
+      { src: asset('/assets/projects/project-04-curved-white-wall-sand.webp'), width: 1195, height: 1600, caption: { en: 'Curved white Lock Stone wall', ar: 'حائط لوك ستون أبيض منحنٍ' } },
+      { src: asset('/assets/projects/project-21-curved-white-wall-blue-sky.webp'), width: 1195, height: 1600, caption: { en: 'Curved wall following the site boundary', ar: 'حائط منحنٍ يتبع حدود الموقع' } },
+      { src: asset('/assets/projects/project-18-curved-grey-wall-large.webp'), width: 1262, height: 1600, caption: { en: 'Large curved grey Lock Stone wall', ar: 'حائط لوك ستون رمادي منحنٍ كبير' } },
+      { src: SITE_PHOTOS.curvedSteppedWallA, width: 960, height: 1280, caption: { en: 'Curved stepped Lock Stone wall', ar: 'حائط لوك ستون منحنٍ ومدرج' } },
+      { src: SITE_PHOTOS.curvedSteppedWallB, width: 960, height: 1280, caption: { en: 'Curved stepped Lock Stone wall, second view', ar: 'حائط لوك ستون منحنٍ ومدرج، زاوية أخرى' } },
+      { src: SITE_PHOTOS.steppedWallTrees, width: 960, height: 1280, caption: { en: 'Stepped Lock Stone wall with planted trees', ar: 'حائط لوك ستون مدرج مع أشجار' } },
+      { src: SITE_PHOTOS.terracedTurfCurvedEdge, width: 960, height: 1280, caption: { en: 'Terraced Lock Stone retaining wall with turf shelves', ar: 'حائط ساند لوك ستون مدرج بمساطب عشب' } },
+      { src: SITE_PHOTOS.terracedTurfVertical, width: 1200, height: 1600, caption: { en: 'Terraced Lock Stone retaining wall with turf shelves', ar: 'حائط ساند لوك ستون مدرج بمساطب عشب' } },
+      { src: SITE_PHOTOS.terracedTurfWide, width: 1200, height: 1600, caption: { en: 'Wide view of terraced Lock Stone walls', ar: 'منظر واسع لحوائط لوك ستون المدرجة' } },
+    ],
+  },
+};
+
+export const PORTFOLIO_REFERENCES = {
+  eyebrow: { en: 'Selected References', ar: 'مراجع مختارة' },
+  title: { en: 'Selected references', ar: 'مراجع مختارة من أعمالنا' },
+  items: [
+    { en: 'Palm Hills New Alexandria', ar: 'بالم هيلز الإسكندرية الجديدة' },
+    { en: 'Hospital 500500, Sheikh Zayed (Tahya Misr 500 500 wall)', ar: 'مستشفى 500 500 بالشيخ زايد (حائط تحيا مصر 500 500)' },
+    { en: 'June, Ras El Hekma (SODIC)', ar: 'قرية June براس الحكمة (سوديك)' },
+    { en: 'Masyaf (M-Square)', ar: 'قرية Masyaf (M-Square)' },
+    { en: 'Amwaj, Alamein (Alamein Co.)', ar: 'قرية أمواج العلمين (شركة العالمين)' },
+    { en: 'Mall wall, Al Khamayel, Sheikh Zayed', ar: 'حائط المول التجاري، مدينة الخمائل بالشيخ زايد' },
+    { en: 'Hotel wall, Al Khamayel, Sheikh Zayed', ar: 'حائط الفندق، مدينة الخمائل بالشيخ زايد' },
+    { en: 'Green Highland, Nasr City', ar: 'كمبوند جرين هايلاند بمدينة نصر' },
+    { en: 'Yuton Paints plant, 10th of Ramadan (Hassan Allam)', ar: 'مصنع يوتن للدهانات بالعاشر من رمضان (حسن علام)' },
+    { en: 'High-speed rail stations, New Administrative Capital (Hassan Allam)', ar: 'محطات القطار السريع بالعاصمة الإدارية (حسن علام)' },
+    { en: 'SwanLake, Ras El Hekma (Hassan Allam)', ar: 'قرية SwanLake براس الحكمة (حسن علام)' },
+    { en: 'Al Ahly Club, Sheikh Zayed branch', ar: 'النادي الأهلي، فرع الشيخ زايد' },
+    { en: 'Factory 81 (military)', ar: 'مصنع 81 حربي' },
+    { en: 'Egyptian Military Academy, New Capital (Marbotec)', ar: 'الأكاديمية العسكرية المصرية بالعاصمة (ماربوتك)' },
+    { en: 'Dar Misr, 5th Settlement', ar: 'مشروع دار مصر بالتجمع الخامس' },
+    { en: 'Badia, 6th of October City', ar: 'مشروع بادية بمدينة السادس من أكتوبر' },
+    { en: 'Rock White compound (Al Batal Co.)', ar: 'كمبوند روك وايت (شركة البطل)' },
+  ],
+};
+
+// 21 new project photos (generic captions on purpose: the project behind each photo is unconfirmed).
+export const PROJECT_PHOTOS = [
+  { src: asset('/assets/projects/project-01-stone-wall-stairs-geotextile.webp'), width: 1462, height: 1600, caption: { en: 'Stone retaining wall with stairs and geotextile', ar: 'جدار ساند حجري مع سلالم وجيوتكستايل' } },
+  { src: asset('/assets/projects/project-02-collage-wall-villas-and-curb-trench.webp'), width: 1195, height: 1600, caption: { en: 'Retaining wall beside villas and a curb trench', ar: 'جدار ساند بجوار فيلات وخندق بردورة' } },
+  { src: asset('/assets/projects/project-04-curved-white-wall-sand.webp'), width: 1195, height: 1600, caption: { en: 'Curved white Lock Stone wall', ar: 'حائط لوك ستون أبيض منحنٍ' } },
+  { src: asset('/assets/projects/project-05-stone-wall-bench-balustrade.webp'), width: 1513, height: 1600, caption: { en: 'Stone wall with bench blocks and balustrade', ar: 'حائط حجري مع بلوكات مقاعد وسور بلاستر' } },
+  { src: asset('/assets/projects/project-07-stone-wall-stairs-paving.webp'), width: 1204, height: 1600, caption: { en: 'Stone wall flanking a stair with paving', ar: 'حائط حجري على جانبي سلم مع بلاط' } },
+  { src: asset('/assets/projects/project-09-geogrid-slope-beside-wall.webp'), width: 1390, height: 1600, caption: { en: 'Geogrid laid on a slope beside a wall', ar: 'شبكة جيوجريد على منحدر بجوار حائط' } },
+  { src: asset('/assets/projects/project-10-stone-wall-stairs-wide.webp'), width: 1600, height: 894, caption: { en: 'Stone wall flanking a stair, wide view', ar: 'حائط حجري على جانبي سلم، منظر واسع' } },
+  { src: asset('/assets/projects/project-11-geogrid-backfill-site.webp'), width: 1404, height: 1600, caption: { en: 'Geogrid and backfill on site', ar: 'شبكة جيوجريد وأعمال الردم بالموقع' } },
+  { src: asset('/assets/projects/project-13-terraced-turf-plaza-construction.webp'), width: 1405, height: 1600, caption: { en: 'Terraced turf walls beside a plaza under construction', ar: 'حوائط مدرجة بمساطب عشب بجوار ساحة تحت الإنشاء' } },
+  { src: asset('/assets/projects/project-14-excavation-trench-heavy-machinery.webp'), width: 1195, height: 1600, caption: { en: 'Excavation trench with heavy machinery', ar: 'خندق حفر بمعدات ثقيلة' } },
+  { src: asset('/assets/projects/project-15-long-white-wall.webp'), width: 1282, height: 1600, caption: { en: 'Long white Lock Stone wall', ar: 'حائط لوك ستون أبيض طويل' } },
+  { src: asset('/assets/projects/project-16-wall-geogrid-drainage-houses.webp'), width: 1195, height: 1600, caption: { en: 'Wall with geogrid and drainage works', ar: 'حائط بأعمال جيوجريد وصرف' } },
+  { src: asset('/assets/projects/project-17-access-road-along-wall.webp'), width: 1378, height: 1600, caption: { en: 'Access road along a retaining wall', ar: 'طريق بجوار حائط ساند' } },
+  { src: asset('/assets/projects/project-18-curved-grey-wall-large.webp'), width: 1262, height: 1600, caption: { en: 'Large curved grey Lock Stone wall', ar: 'حائط لوك ستون رمادي منحنٍ كبير' } },
+  { src: asset('/assets/projects/project-20-crew-on-grey-wall.webp'), width: 1275, height: 1600, caption: { en: 'Crew working on a grey Lock Stone wall', ar: 'فريق يعمل على حائط لوك ستون رمادي' } },
+  { src: asset('/assets/projects/project-21-curved-white-wall-blue-sky.webp'), width: 1195, height: 1600, caption: { en: 'Curved white Lock Stone wall under blue sky', ar: 'حائط لوك ستون أبيض منحنٍ' } },
+  { src: asset('/assets/projects/project-24-long-grey-wall-wide-angle.webp'), width: 1389, height: 1600, caption: { en: 'Long grey Lock Stone wall, wide angle', ar: 'حائط لوك ستون رمادي طويل بزاوية واسعة' } },
+  { src: asset('/assets/projects/project-25-stone-wall-villas-wide.webp'), width: 1600, height: 736, caption: { en: 'Stone retaining wall near villas', ar: 'حائط ساند حجري بجوار فيلات' } },
+  { src: asset('/assets/projects/project-26-collage-two-walls-villas.webp'), width: 1476, height: 1600, caption: { en: 'Two stone retaining walls near villas', ar: 'حائطان ساندان حجريان بجوار فيلات' } },
+  { src: asset('/assets/projects/project-27-geogrid-large-slope.webp'), width: 1195, height: 1600, caption: { en: 'Geogrid across a large slope', ar: 'شبكة جيوجريد على منحدر كبير' } },
+  { src: asset('/assets/projects/project-28-curved-wall-geogrid-drainage.webp'), width: 1383, height: 1600, caption: { en: 'Curved wall with geogrid and drainage', ar: 'حائط منحنٍ بجيوجريد وصرف' } },
+];
+
+// Home page photo strip: picks from PROJECT_PHOTOS by file number (generic captions only).
+export const HOME_FIELD_STRIP = {
+  eyebrow: { en: 'From the Field', ar: 'من موقع العمل' },
+  title: { en: 'Lock Stone walls on site', ar: 'حوائط لوك ستون في مواقع التنفيذ' },
+  numbers: ['13', '18', '21', '25', '11', '27'],
+};

@@ -1848,3 +1848,44 @@ html[lang="ar"] .client-marquee-name {
     font-size: 1.125rem;
   }
 }
+
+
+/* ---- Lock Stone page: 4-stage cards, drainage stack, curved-walls slider ---- */
+.ls-steps-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.ls-step-card { border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); padding: 1.5rem; }
+.ls-step-callout { font-size: 0.75rem; color: var(--accent); border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 0.875rem; line-height: 1.6; }
+
+.ls-drain-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; align-items: center; }
+.ls-drain-cards { grid-column: span 6; display: grid; gap: 1rem; }
+.ls-photo-stack { grid-column: span 6; position: relative; height: 36rem; }
+.ls-stack-item { position: absolute; width: 62%; padding: 0; border: 0; cursor: zoom-in; background: #1c1b19; border-radius: var(--radius-sm); overflow: hidden; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28); transition: transform 0.35s ease, box-shadow 0.35s ease, z-index 0s; }
+.ls-stack-item img { display: block; width: 100%; height: auto; }
+.ls-stack-item--1 { top: 0; inset-inline-start: 0; transform: rotate(-5deg); z-index: 1; }
+.ls-stack-item--2 { bottom: 0; inset-inline-end: 0; transform: rotate(4deg); z-index: 2; }
+.ls-stack-item:hover, .ls-stack-item:focus-visible { transform: rotate(0deg) scale(1.05); z-index: 5; box-shadow: 0 26px 56px rgba(0, 0, 0, 0.4); }
+.ls-stack-cap { position: absolute; inset-inline: 0; bottom: 0; padding: 0.75rem 1rem; font-size: 0.75rem; color: #fbf9f4; text-align: start; background: linear-gradient(to top, rgba(20, 19, 17, 0.9), transparent); opacity: 0; transition: opacity 0.3s ease; }
+.ls-stack-item:hover .ls-stack-cap, .ls-stack-item:focus-visible .ls-stack-cap { opacity: 1; }
+
+/* Slider: no visible scrollbar, one arrow on each side of the track */
+.ls-slider { position: relative; }
+.ls-slider-track::-webkit-scrollbar { display: none; height: 0; }
+.ls-slider-btn { position: absolute; top: 40%; transform: translateY(-50%); z-index: 3; width: 2.75rem; height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.35); background: rgba(20, 19, 17, 0.72); color: #fbf9f4; border-radius: 999px; cursor: pointer; backdrop-filter: blur(4px); transition: background 0.2s ease, border-color 0.2s ease; }
+.ls-slider-btn--left { left: 0.75rem; }
+.ls-slider-btn--right { right: 0.75rem; }
+.ls-slider-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ls-slider-track { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 0; -webkit-overflow-scrolling: touch; }
+.ls-slide { flex: 0 0 calc((100% - 2rem) / 3); scroll-snap-align: start; margin: 0; }
+.ls-slide-media { display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 4 / 5; background: #1c1b19; }
+.ls-slide-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.ls-slide-media:hover img { transform: scale(1.05); }
+.ls-slide figcaption { padding: 0.75rem 0.25rem 0; font-size: 0.8125rem; line-height: 1.6; color: var(--ink-secondary); }
+
+@media (max-width: 900px) {
+  .ls-slide { flex-basis: calc((100% - 1rem) / 2); }
+  .ls-drain-cards, .ls-photo-stack { grid-column: span 12; }
+  .ls-photo-stack { height: 30rem; }
+}
+@media (max-width: 640px) {
+  .ls-steps-grid { grid-template-columns: 1fr; }
+  .ls-slide { flex-basis: 86%; }
+}

@@ -3,6 +3,7 @@ import {
   LOCK_STONE_FACE_PROFILES,
   LOCK_STONE_SYSTEM,
   LOCK_STONE_VIDEOS,
+  LOCK_STONE_EXTRA,
   SITE_CONSTRUCTION_SEQUENCE,
   UI_COPY,
   UPLOADED_PHOTOS,
@@ -13,108 +14,81 @@ import { getLang } from './language.js';
 import { openSheetZoomModal, renderBreadcrumbs, renderPageHeroBg, renderStrataDivider } from './navigation.js';
 import { buildPageUrl } from './routing.js';
 
-function renderSectionalSvg(selectedStep) {
-  return `<svg viewBox="0 0 420 260" class="diagram-svg" role="img" aria-label="Lock Stone retaining wall sectional assembly diagram">
-    <!-- Ground / Soil Backfill Zone -->
-    <polygon points="185,40 410,40 410,210 185,210" fill="rgba(181,86,42,0.12)" />
+function renderExtraSections(lang) {
+  const X = LOCK_STONE_EXTRA;
+  const head = (blk) => `<div style="max-width:42rem;margin-bottom:2rem;" class="reveal">
+      <div class="eyebrow"><span class="eyebrow-bar"></span><span>${escapeHtml(blk.eyebrow[lang])}</span></div>
+      <h2 class="h2-section text-balance">${escapeHtml(blk.title[lang])}</h2>
+    </div>`;
+  const arrow = (dir) => `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${dir < 0 ? 'M15 6l-6 6 6 6' : 'M9 6l6 6-6 6'}"/></svg>`;
+  return `
+      <section class="section-paper">
+        <div class="container">
+          ${head(X.anatomy)}
+          <div style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));align-items:center;">
+            <figure class="reveal" style="margin:0;"><img src="${escapeHtml(X.anatomy.photo.src)}" alt="${escapeHtml(X.anatomy.photo.alt[lang])}" width="${X.anatomy.photo.width}" height="${X.anatomy.photo.height}" loading="lazy" decoding="async" style="width:100%;height:auto;display:block;border-radius:var(--radius-sm);" /></figure>
+            <ul class="reveal" style="margin:0;padding-inline-start:1.25rem;line-height:1.8;color:var(--ink-secondary);">
+              ${X.anatomy.points.map((pt) => `<li>${escapeHtml(pt[lang])}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      </section>
 
-    <!-- Concrete Footing (Step 0/1) -->
-    <rect
-      x="60"
-      y="208"
-      width="175"
-      height="26"
-      rx="2"
-      fill="${selectedStep === 0 || selectedStep === 1 ? '#CE6838' : '#3C3934'}"
-      stroke="${selectedStep === 0 || selectedStep === 1 ? '#FBF9F4' : '#5B5650'}"
-      stroke-width="1.5"
-    />
-    <text x="148" y="225" text-anchor="middle" fill="#FBF9F4" font-size="10" font-family="IBM Plex Mono">
-      CONCRETE FOOTING (0.6–1.2m × 20cm)
-    </text>
+      <section class="section-paper">
+        <div class="container">
+          ${head(X.drainage)}
+          <div class="ls-drain-grid">
+            <div class="ls-drain-cards">
+              ${X.drainage.cards
+                .map(
+                  (c, idx) => `<div class="spec-matrix-card reveal" data-variant="spec" data-delay="${idx * 45}">
+                <div class="font-mono-tech" style="font-size:0.75rem;color:var(--ink-secondary);margin-bottom:0.5rem;">${escapeHtml(c.title[lang])}</div>
+                <div style="font-size:0.9375rem;line-height:1.6;color:var(--ink-primary);">${escapeHtml(c.text[lang])}</div>
+              </div>`
+                )
+                .join('')}
+            </div>
+            <div class="ls-photo-stack">
+              ${X.drainage.photos
+                .map(
+                  (p, idx) => `<button type="button" class="ls-stack-item ls-stack-item--${idx + 1}" data-drain-zoom="${idx}" aria-label="${escapeHtml(p.caption[lang])}">
+                <img src="${escapeHtml(p.src)}" alt="${escapeHtml(p.caption[lang])}" width="${p.width}" height="${p.height}" loading="lazy" decoding="async" />
+                <span class="ls-stack-cap">${escapeHtml(p.caption[lang])}</span>
+              </button>`
+                )
+                .join('')}
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Block Courses -->
-    <g>
-      <rect x="82" y="170" width="96" height="34" fill="#5B5650" stroke="#1C1B19" stroke-width="1.5" />
-      <rect x="90" y="132" width="96" height="34" fill="#5B5650" stroke="#1C1B19" stroke-width="1.5" />
-      <rect x="98" y="94" width="96" height="34" fill="#B5562A" stroke="#1C1B19" stroke-width="1.5" />
-      <rect x="106" y="56" width="96" height="34" fill="#5B5650" stroke="#1C1B19" stroke-width="1.5" />
-    </g>
-
-    <!-- Geogrid Tie-Backs (Step 2/3) -->
-    <g stroke="${selectedStep === 3 ? '#CE6838' : '#736D63'}" stroke-width="${selectedStep === 3 ? 3 : 1.8}" stroke-dasharray="6 4">
-      <line x1="178" y1="168" x2="390" y2="168" />
-      <line x1="194" y1="130" x2="390" y2="130" />
-      <line x1="202" y1="92" x2="390" y2="92" />
-    </g>
-    <text x="295" y="118" text-anchor="middle" fill="#EDE6D6" font-size="10" font-family="IBM Plex Mono">
-      G-TEX GEOGRID 60–160 kN/m
-    </text>
-
-    <!-- Fiberglass Rebar + Pour (Step 2/3) -->
-    <g>
-      <line
-        x1="130"
-        y1="56"
-        x2="130"
-        y2="208"
-        stroke="${selectedStep === 2 || selectedStep === 3 ? '#CE6838' : '#EDE6D6'}"
-        stroke-width="${selectedStep === 2 || selectedStep === 3 ? 4 : 2.5}"
-      />
-      <line
-        x1="164"
-        y1="56"
-        x2="164"
-        y2="208"
-        stroke="${selectedStep === 2 || selectedStep === 3 ? '#CE6838' : '#EDE6D6'}"
-        stroke-width="${selectedStep === 2 || selectedStep === 3 ? 4 : 2.5}"
-      />
-    </g>
-
-    <!-- Compaction arrows (Step 3) -->
-    <g opacity="${selectedStep === 3 ? 1 : 0.45}">
-      <line x1="270" y1="45" x2="270" y2="75" stroke="#CE6838" stroke-width="2" />
-      <polygon points="265,70 275,70 270,80" fill="#CE6838" />
-      <line x1="330" y1="45" x2="330" y2="75" stroke="#CE6838" stroke-width="2" />
-      <polygon points="325,70 335,70 330,80" fill="#CE6838" />
-      <text x="300" y="34" text-anchor="middle" fill="#CE6838" font-size="9" font-family="IBM Plex Mono">
-        30cm COMPACTED LIFTS
-      </text>
-    </g>
-  </svg>`;
+      <section class="section-paper">
+        <div class="container">
+          ${head(X.curved)}
+          <div class="ls-slider">
+            <button type="button" class="ls-slider-btn ls-slider-btn--left" data-ls-slide="-1" aria-label="${lang === 'ar' ? 'السابق (يسار)' : 'Previous'}">${arrow(-1)}</button>
+            <button type="button" class="ls-slider-btn ls-slider-btn--right" data-ls-slide="1" aria-label="${lang === 'ar' ? 'التالي (يمين)' : 'Next'}">${arrow(1)}</button>
+          <div class="ls-slider-track" data-ls-track dir="ltr">
+            ${X.curved.photos
+              .map(
+                (p, idx) => `<figure class="ls-slide" dir="${lang === 'ar' ? 'rtl' : 'ltr'}">
+              <button type="button" class="ls-slide-media" data-curved-zoom="${idx}" aria-label="${escapeHtml(p.caption[lang])}">
+                <img src="${escapeHtml(p.src)}" alt="${escapeHtml(p.caption[lang])}" width="${p.width}" height="${p.height}" loading="lazy" decoding="async" />
+              </button>
+              <figcaption>${escapeHtml(p.caption[lang])}</figcaption>
+            </figure>`
+              )
+              .join('')}
+          </div>
+          </div>
+        </div>
+      </section>
+`;
 }
 
 let videoObserver = null;
 
 export function initLockStonePage(root) {
-  let selectedStep = 0;
-
-  function updateDiagramAndSteps() {
-    const lang = getLang();
-    const stepData = LOCK_STONE_SYSTEM.steps[selectedStep];
-
-    root.querySelectorAll('[data-course-idx]').forEach((btn) => {
-      const idx = Number(btn.dataset.courseIdx);
-      btn.classList.toggle('is-selected', idx === selectedStep);
-      btn.setAttribute('aria-pressed', idx === selectedStep ? 'true' : 'false');
-    });
-
-    const svgWrap = root.querySelector('#ls-diagram-svg-wrap');
-    if (svgWrap) svgWrap.innerHTML = renderSectionalSvg(selectedStep);
-
-    const callout = root.querySelector('#ls-diagram-callout');
-    if (callout && stepData) {
-      callout.innerHTML = `
-        <div class="font-mono-tech" style="font-size:0.75rem;color:var(--accent);margin-bottom:0.25rem;">
-          ${escapeHtml(stepData.course)} — ${escapeHtml(stepData.title[lang])}
-        </div>
-        <div style="font-size:0.875rem;color:rgba(251,249,244,0.85);">
-          ${escapeHtml(stepData.specCallout[lang])}
-        </div>
-      `;
-    }
-  }
-
   function render() {
     const lang = getLang();
 
@@ -146,9 +120,9 @@ export function initLockStonePage(root) {
             </div>
 
             <div style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border-inverse);aspect-ratio:4/3;background-color:#2C2A26;position:relative;" class="group reveal">
-              <img src="${escapeHtml(UPLOADED_PHOTOS.bandedWallWide)}" alt="${lang === 'ar' ? 'حائط ساند لوك ستون منفذ بالرمادي والطوبي' : 'Banded black basalt and terracotta Lock Stone retaining wall'}" class="media-zoom-img--subtle" style="object-fit:cover;" />
+              <img src="${escapeHtml(UPLOADED_PHOTOS.bandedWallWide)}" alt="${lang === 'ar' ? 'حائط ساند لوك ستون منفذ بالرمادي والطوبي' : 'Banded charcoal and terracotta Lock Stone retaining wall'}" class="media-zoom-img--subtle" style="object-fit:cover;" />
               <div style="position:absolute;bottom:0;inset-inline:0;background:linear-gradient(to top,rgba(20,19,17,0.92),transparent);padding:1rem;font-family:var(--f-mono);font-size:0.75rem;color:#FBF9F4;">
-                ${lang === 'ar' ? 'حائط ساند مزدوج الألوان منفذ على الطبيعة — مداميك لوك ستون مترابطة' : 'Field execution: Alternating basalt & terracotta split-face Lock Stone courses'}
+                ${lang === 'ar' ? 'حائط ساند مزدوج الألوان منفذ على الطبيعة — مداميك لوك ستون مترابطة' : 'Field execution: alternating charcoal and terracotta Lock Stone courses'}
               </div>
             </div>
           </div>
@@ -161,10 +135,10 @@ export function initLockStonePage(root) {
           <div style="margin-bottom:2rem;" class="reveal">
             <div class="eyebrow">
               <span class="eyebrow-bar"></span>
-              <span>${lang === 'ar' ? 'مواصفات ومقاسات معتمدة' : 'Technical Datasheet'}</span>
+              <span>${lang === 'ar' ? 'ملخص فني' : 'Technical Summary'}</span>
             </div>
             <h2 class="h2-section text-balance">
-              ${lang === 'ar' ? 'الخصائص الإنشائية والفيزيائية للبلوك' : 'Engineering & Testing Specifications'}
+              ${lang === 'ar' ? 'مواصفات منظومة لوك ستون' : 'Lock Stone System Specifications'}
             </h2>
           </div>
 
@@ -173,7 +147,7 @@ export function initLockStonePage(root) {
               .map(
                 (spec, idx) => `<div class="spec-matrix-card interactive-card reveal" data-variant="spec" data-delay="${idx * 45}">
                 <div class="font-mono-tech" style="font-size:0.75rem;color:var(--ink-secondary);margin-bottom:0.5rem;">${escapeHtml(spec.label[lang])}</div>
-                <div class="font-display" style="font-weight:600;font-size:1.375rem;color:var(--ink-primary);">${escapeHtml(spec.value)}</div>
+                <div class="font-display" style="font-weight:600;font-size:1.375rem;color:var(--ink-primary);">${escapeHtml(typeof spec.value === 'string' ? spec.value : spec.value[lang])}</div>
               </div>`
               )
               .join('')}
@@ -181,7 +155,7 @@ export function initLockStonePage(root) {
         </div>
       </section>
 
-      <!-- Interactive 4-Course Assembly Sequence & SVG -->
+      <!-- 4-Stage Construction Sequence -->
       <section class="section-inverse">
         <div class="container">
           <div style="max-width:40rem;margin-bottom:2.5rem;" class="reveal">
@@ -194,33 +168,19 @@ export function initLockStonePage(root) {
             </h2>
           </div>
 
-          <div class="course-assembly-grid">
-            <div class="course-selector-list">
-              ${LOCK_STONE_SYSTEM.steps
-                .map(
-                  (st, idx) => `<button type="button" data-course-idx="${idx}" aria-pressed="${selectedStep === idx ? 'true' : 'false'}" class="course-step-btn ${selectedStep === idx ? 'is-selected' : ''}">
-                  <div style="display:flex;align-items:flex-start;gap:1rem;">
-                    <span class="font-mono-tech" style="font-size:1.125rem;font-weight:600;color:var(--accent);">${escapeHtml(st.course)}</span>
-                    <div>
-                      <div class="font-display" style="font-weight:600;font-size:1.125rem;color:#FBF9F4;margin-bottom:0.25rem;">${escapeHtml(st.title[lang])}</div>
-                      <p style="font-size:0.875rem;color:rgba(251,249,244,0.72);line-height:1.6;">${escapeHtml(st.description[lang])}</p>
-                    </div>
-                  </div>
-                </button>`
-                )
-                .join('')}
-            </div>
-
-            <div class="diagram-box reveal">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
-                <span class="font-mono-tech" style="font-size:0.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;">
-                  ${lang === 'ar' ? 'قطاع هندسي تفاعلي' : 'Sectional Assembly Diagram'}
-                </span>
-                <span class="font-mono-tech" style="font-size:0.75rem;color:rgba(237,230,214,0.65);">Patent No. 2018/1412</span>
+          <div class="ls-steps-grid">
+            ${LOCK_STONE_SYSTEM.steps
+              .map(
+                (st, idx) => `<article class="ls-step-card reveal" data-delay="${idx * 60}">
+              <div style="display:flex;align-items:baseline;gap:0.875rem;margin-bottom:0.75rem;">
+                <span class="font-mono-tech" style="font-size:1.25rem;font-weight:600;color:var(--accent);">${escapeHtml(st.course)}</span>
+                <h3 class="font-display" style="font-weight:600;font-size:1.125rem;color:#FBF9F4;margin:0;">${escapeHtml(st.title[lang])}</h3>
               </div>
-              <div id="ls-diagram-svg-wrap">${renderSectionalSvg(selectedStep)}</div>
-              <div id="ls-diagram-callout" class="diagram-callout"></div>
-            </div>
+              <p style="font-size:0.875rem;color:rgba(251,249,244,0.75);line-height:1.7;margin:0 0 1rem;">${escapeHtml(st.description[lang])}</p>
+              <div class="font-mono-tech ls-step-callout">${escapeHtml(st.specCallout[lang])}</div>
+            </article>`
+              )
+              .join('')}
           </div>
         </div>
       </section>
@@ -254,16 +214,18 @@ export function initLockStonePage(root) {
         </div>
       </section>
 
+      ${renderExtraSections(lang)}
+
       <!-- Face Profiles & On-Site Construction Photos -->
       <section class="section-paper">
         <div class="container">
           <div style="max-width:42rem;margin-bottom:2.5rem;" class="reveal">
             <div class="eyebrow">
               <span class="eyebrow-bar"></span>
-              <span>${lang === 'ar' ? 'أشكال الواجهات والنشرات الفنية' : 'Face Profiles & Spec Sheets'}</span>
+              <span>${lang === 'ar' ? 'أشكال الواجهات' : 'Face Variants'}</span>
             </div>
             <h2 class="h2-section text-balance">
-              ${lang === 'ar' ? 'الواجهات المعمارية للبلوك وتفاصيل التأسيس الرسمية' : 'Keystone Face Variants & Official Installation Diagrams'}
+              ${lang === 'ar' ? 'أشكال واجهات بلوك لوك ستون' : 'Lock Stone Block Face Variants'}
             </h2>
           </div>
 
@@ -284,7 +246,7 @@ export function initLockStonePage(root) {
           <div style="max-width:42rem;margin-bottom:2rem;" class="reveal">
             <div class="eyebrow">
               <span class="eyebrow-bar"></span>
-              <span>${lang === 'ar' ? 'تنفيذ فعلي بمواقع الطرق والجسور' : 'On-Site Embankment Construction'}</span>
+              <span>${lang === 'ar' ? 'تنفيذ فعلي بالموقع' : 'On-Site Construction'}</span>
             </div>
             <h3 class="h2-section" style="font-size:1.75rem;">
               ${lang === 'ar' ? 'مراحل شد شبكات الجيوغريد والردم والدمك في الموقع' : 'Highway Retaining Wall Sequence: Geogrid, Backfill & Compaction'}
@@ -310,10 +272,19 @@ export function initLockStonePage(root) {
       ${renderStrataDivider()}
     `;
 
-    root.querySelectorAll('[data-course-idx]').forEach((btn) => {
+    const zoomItem = (item) => item && openSheetZoomModal({ src: item.src, title: item.caption[lang], caption: '' });
+    root.querySelectorAll('[data-drain-zoom]').forEach((btn) => {
+      btn.addEventListener('click', () => zoomItem(LOCK_STONE_EXTRA.drainage.photos[Number(btn.dataset.drainZoom)]));
+    });
+    root.querySelectorAll('[data-curved-zoom]').forEach((btn) => {
+      btn.addEventListener('click', () => zoomItem(LOCK_STONE_EXTRA.curved.photos[Number(btn.dataset.curvedZoom)]));
+    });
+    const track = root.querySelector('[data-ls-track]');
+    root.querySelectorAll('[data-ls-slide]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        selectedStep = Number(btn.dataset.courseIdx);
-        updateDiagramAndSteps();
+        const slide = track?.querySelector('.ls-slide');
+        if (!slide) return;
+        track.scrollBy({ left: Number(btn.dataset.lsSlide) * (slide.getBoundingClientRect().width + 16), behavior: 'smooth' });
       });
     });
 
@@ -366,7 +337,6 @@ export function initLockStonePage(root) {
       videos.forEach((v) => videoObserver.observe(v));
     }
 
-    updateDiagramAndSteps();
     refreshAllInteractions(root);
   }
 

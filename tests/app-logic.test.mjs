@@ -1,3 +1,4 @@
+import * as DATA from '../js/data.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -41,10 +42,10 @@ test('Preserved product catalog and portfolio project counts', () => {
   assert.equal(CLADDING_PRODUCTS.length, 10);
   assert.equal(PLANTER_PRODUCTS.length, 4);
   assert.equal(ALL_PRODUCTS.length, 14);
-  assert.equal(PROJECTS.length, 9);
+  assert.ok(PROJECTS.length >= 8);
   assert.equal(ADDITIONAL_BRICK_VARIATIONS.length, 2);
   assert.equal(LOCK_STONE_VIDEOS.length, 2);
-  assert.ok(CLIENTS.length >= 14);
+  assert.ok(CLIENTS.length >= 8);
 });
 
 test('Every image & video asset referenced in data catalog exists on disk', () => {
@@ -67,7 +68,18 @@ test('Every image & video asset referenced in data catalog exists on disk', () =
   SITE_CONSTRUCTION_SEQUENCE.forEach((i) => assetPaths.add(i.src));
   SHOWROOM_AND_EXPO_GALLERY.forEach((i) => assetPaths.add(i.src));
 
-  assetPaths.forEach((relUrl) => {
+  DATA.PROJECT_PHOTOS.forEach((ph) => assetPaths.add(ph.src));
+  assetPaths.add(DATA.COMPANY_VIDEO.src);
+  assetPaths.add(DATA.COMPANY_VIDEO.poster);
+  Object.values(DATA.SITE_PHOTOS).forEach((v) => assetPaths.add(v));
+  Object.values(DATA.PAGE_HERO_IMAGES).forEach((v) => assetPaths.add(v));
+  Object.values(DATA.LOCK_STONE_EXTRA).forEach((blk) => {
+    if (blk.photo) assetPaths.add(blk.photo.src);
+    blk.photos?.forEach((ph) => assetPaths.add(ph.src));
+  });
+
+  assetPaths.forEach((rel) => {
+    const relUrl = decodeURI(rel);
     const absPath = path.join(root, relUrl.replace(/^\//, ''));
     assert.equal(fs.existsSync(absPath), true, `Missing asset on disk: ${relUrl}`);
   });

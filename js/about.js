@@ -55,8 +55,8 @@ export function initAboutPage(root) {
                   <dd>${lang === 'ar' ? 'براءة اختراع مصرية' : 'Egyptian patent'}</dd>
                 </div>
                 <div class="about-fact">
-                  <dt>ASTM C1372</dt>
-                  <dd>${lang === 'ar' ? 'اختبارات مركز HBRC' : 'Tested at HBRC'}</dd>
+                  <dt>60-160 kN/m</dt>
+                  <dd>${lang === 'ar' ? 'مقاومة شد الجيوجريد HDPE' : 'HDPE geogrid tensile strength'}</dd>
                 </div>
                 <div class="about-fact">
                   <dt>${ABOUT_CONTENT.capabilities.length}</dt>
@@ -132,7 +132,7 @@ export function initAboutPage(root) {
               <span>${lang === 'ar' ? 'الاعتمادات والاختبارات القياسية' : 'Quality Assurance'}</span>
             </div>
             <h2 class="h2-section text-balance">
-              ${lang === 'ar' ? 'الاختبارات وبراءات الاختراع المعتمدة' : 'Tested Materials & Official Patent Protection'}
+              ${lang === 'ar' ? 'براءة الاختراع ومكونات المنظومة' : 'Official Patent & System Materials'}
             </h2>
           </div>
 

@@ -13,7 +13,7 @@ function normalizePathname(pathname) {
 }
 
 /**
- * Supports clean routes (`/about`, `/products/SP-227/`, `/projects/seashell-development/`)
+ * Supports clean routes (`/about`, `/products/SP-227/`, `/projects/banded-boundary-wall/`)
  * and the real static `.html` files (`/about.html`, ...).
  */
 export function parseRoute(pathname) {
@@ -108,24 +108,24 @@ const META = {
     ar: {
       title: 'عن روك آرت | مصنع منتجات أسمنتية وجي آر سي بأبو رواش',
       description:
-        'تعرّف على مصنع روك آرت بالكيلو 26 أبو رواش: تصنيع بلوك الكيستون والإنترلوك وأعمال الجي آر سي للفلل والمشروعات، باختبارات معتمدة وشركاء تنفيذ في مصر.',
+        'تعرّف على مصنع روك آرت بالكيلو 26 أبو رواش: تصنيع بلوك الكيستون والإنترلوك وأعمال الجي آر سي للفلل والمشروعات، ومشروعات منفذة في مختلف أنحاء مصر.',
     },
     en: {
       title: 'About Rock Art | Cement & GRC Products Factory in Abu Rawash',
       description:
-        'Rock Art factory at Kilo 26 Abu Rawash, Giza — certified cement products, GRC architectural works and 30+ contracting partners.',
+        'Rock Art factory at Kilo 26 Abu Rawash, Giza — cement products, GRC architectural works and 15+ major projects delivered across Egypt.',
     },
   },
   'lock-stone': {
     ar: {
       title: 'نظام لوك ستون للحوائط الساندة | براءة اختراع | روك آرت',
       description:
-        'نظام لوك ستون للحوائط الساندة مزدوج التسليح ببراءة اختراع رقم 2018/1412، لارتفاعات تتجاوز 20 متراً، مختبر وفق ASTM C140 وC1372-17. احصل على عرض سعر.',
+        'نظام لوك ستون للحوائط الساندة مزدوج التسليح ببراءة اختراع رقم 2018/1412، لارتفاعات تتجاوز 12 متراً مع تدعيم جيد للتربة، بشبكات جيوجريد HDPE من 60 إلى 160 كيلو نيوتن/م. احصل على عرض سعر.',
     },
     en: {
       title: 'Lock Stone Retaining Wall System | Patented | Rock Art Egypt',
       description:
-        'Patented double-reinforced Lock Stone retaining walls supporting heights over 20m, tested to ASTM C140 / C1372-17.',
+        'Patented double-reinforced Lock Stone retaining walls supporting heights over 12 m with proper soil reinforcement, using HDPE geogrids rated 60 to 160 kN/m.',
     },
   },
   products: {

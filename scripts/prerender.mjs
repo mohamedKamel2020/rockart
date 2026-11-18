@@ -104,7 +104,7 @@ function shell(target, meta, jsonLd) {
   const ogImage = `${SITE_URL}${target.image || DEFAULT_OG_IMAGE}`;
   const robots = target.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1';
   const heroPreload =
-    target.page === 'home' ? `    <link rel="preload" as="image" href="${rel}${esc(data.GENERATED_IMAGES.heroRetainingWall.replace(/^\//, ''))}" fetchpriority="high" />\n` : '';
+    target.page === 'home' ? `    <link rel="preload" as="image" href="${rel}${esc(data.HERO_IMAGE.replace(/^\//, ''))}" fetchpriority="high" />\n` : '';
   const brand = data.COMPANY_INFO.brand[LANG];
 
   return `<!doctype html>

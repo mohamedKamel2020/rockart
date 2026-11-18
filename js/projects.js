@@ -1,4 +1,4 @@
-import { PROJECTS, UI_COPY } from './data.js';
+import { PORTFOLIO_REFERENCES, PROJECTS, UI_COPY } from './data.js';
 import { filterProjects } from './engineering.js';
 import { escapeHtml, icon } from './icons.js';
 import { getLang, isRtl, navigateWithQuotePrefill } from './language.js';
@@ -417,6 +417,18 @@ export function initProjectsPage(root) {
               })
               .join('')}
           </div>
+        </div>
+      </section>
+
+      <section class="section-paper">
+        <div class="container">
+          <div style="max-width:42rem;margin-bottom:2rem;" class="reveal">
+            <div class="eyebrow"><span class="eyebrow-bar"></span><span>${escapeHtml(PORTFOLIO_REFERENCES.eyebrow[lang])}</span></div>
+            <h2 class="h2-section text-balance">${escapeHtml(PORTFOLIO_REFERENCES.title[lang])}</h2>
+          </div>
+          <ul class="reveal" style="columns:2 18rem;column-gap:2rem;margin:0;padding-inline-start:1.25rem;line-height:1.9;color:var(--ink-primary);">
+            ${PORTFOLIO_REFERENCES.items.map((it) => `<li>${escapeHtml(it[lang])}</li>`).join('')}
+          </ul>
         </div>
       </section>
 

@@ -3,7 +3,10 @@ import {
   ALL_PRODUCTS,
   CLIENTS,
   COMPANY_INFO,
-  GENERATED_IMAGES,
+  HERO_IMAGE,
+  HOME_FIELD_STRIP,
+  PROJECT_PHOTOS,
+  SITE_PHOTOS,
   HERO_CONTENT,
   COMPANY_VIDEO,
   LOCK_STONE_SYSTEM,
@@ -41,7 +44,7 @@ export function initHomePage(root) {
       <!-- 1. ARCHITECTURAL HERO -->
       <section class="hero">
         <div class="hero-bg">
-          <img src="${escapeHtml(GENERATED_IMAGES.heroRetainingWall)}" alt="${escapeHtml(HERO_CONTENT.headlineStart[lang])}" class="hero-bg-img" fetchpriority="high" decoding="async" />
+          <img src="${escapeHtml(HERO_IMAGE)}" alt="${escapeHtml(HERO_CONTENT.headlineStart[lang])}" class="hero-bg-img" fetchpriority="high" decoding="async" />
           <div class="hero-overlay"></div>
         </div>
 
@@ -160,7 +163,7 @@ export function initHomePage(root) {
             </div>
             <div class="reveal" data-delay="80">
               <div class="company-video-frame" id="company-video-stage">
-                <img src="${escapeHtml(UPLOADED_PHOTOS.gardenRockworkShowroom)}" alt="" class="company-video-poster" loading="lazy" decoding="async" />
+                <img src="${escapeHtml(COMPANY_VIDEO.poster)}" alt="" class="company-video-poster" width="1280" height="720" loading="lazy" decoding="async" />
                 <button type="button" class="company-video-play" id="company-video-play" aria-label="${lang === 'ar' ? 'تشغيل الفيديو التعريفي' : 'Play company video'}">
                   <span class="company-video-play-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
                 </button>
@@ -217,7 +220,7 @@ export function initHomePage(root) {
                         ? escapeHtml(lockVideo.title[lang])
                         : lang === 'ar'
                         ? 'حائط ساند مزدوج الألوان منفذ فعلياً بالرمادي والطوبي (مداميك لوك ستون مترابطة)'
-                        : 'Dual-tone charcoal basalt & terracotta Lock Stone site retaining elevation'
+                        : 'Alternating charcoal and terracotta Lock Stone courses on site'
                     }
                   </div>
                 </div>
@@ -229,7 +232,7 @@ export function initHomePage(root) {
                   .map(
                     (sp) => `<div class="spec-row">
                       <span style="color:rgba(237,230,214,0.65);">${escapeHtml(sp.label[lang])}</span>
-                      <span style="color:#FBF9F4;font-weight:500;">${escapeHtml(sp.value)}</span>
+                      <span style="color:#FBF9F4;font-weight:500;">${escapeHtml(typeof sp.value === 'string' ? sp.value : sp.value[lang])}</span>
                     </div>`
                   )
                   .join('')}
@@ -278,7 +281,7 @@ export function initHomePage(root) {
           <!-- Planters & Garden Accents Banner -->
           <div class="planter-banner interactive-card reveal group" data-variant="spec">
             <div class="planter-banner-media">
-              <img src="${escapeHtml(GENERATED_IMAGES.castStonePlanters)}" alt="${escapeHtml(UI_COPY.planterSectionTitle[lang])}" loading="lazy" decoding="async" class="media-zoom-img" style="object-fit:cover;" />
+              <img src="${escapeHtml(UPLOADED_PHOTOS.gardenFountainShowroom)}" alt="${escapeHtml(UI_COPY.planterSectionTitle[lang])}" loading="lazy" decoding="async" class="media-zoom-img" style="object-fit:cover;" />
             </div>
             <div class="planter-banner-body">
               <div class="eyebrow">
@@ -344,6 +347,30 @@ export function initHomePage(root) {
                     </div>
                   </div>
                 </article>`
+              )
+              .join('')}
+          </div>
+        </div>
+      </section>
+
+      <!-- 5b. FIELD PHOTO STRIP -->
+      <section class="section-paper">
+        <div class="container">
+          <div style="max-width:42rem;margin-bottom:2rem;" class="reveal">
+            <div class="eyebrow"><span class="eyebrow-bar"></span><span>${escapeHtml(HOME_FIELD_STRIP.eyebrow[lang])}</span></div>
+            <h2 class="h2-section text-balance">${escapeHtml(HOME_FIELD_STRIP.title[lang])}</h2>
+          </div>
+          <div class="projects-grid">
+            ${HOME_FIELD_STRIP.numbers
+              .map((n) => PROJECT_PHOTOS.find((p) => p.src.includes('project-' + n + '-')))
+              .filter(Boolean)
+              .map(
+                (p, idx) => `<figure class="product-card reveal" data-delay="${idx * 50}" style="margin:0;overflow:hidden;">
+              <div style="aspect-ratio:4/3;overflow:hidden;background-color:#1C1B19;">
+                <img src="${escapeHtml(p.src)}" alt="${escapeHtml(p.caption[lang])}" width="${p.width}" height="${p.height}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <figcaption style="padding:0.75rem 1rem;font-size:0.8125rem;color:var(--ink-secondary);line-height:1.5;">${escapeHtml(p.caption[lang])}</figcaption>
+            </figure>`
               )
               .join('')}
           </div>
@@ -422,7 +449,7 @@ export function initHomePage(root) {
     const companyStage = root.querySelector('#company-video-stage');
     root.querySelector('#company-video-play')?.addEventListener('click', () => {
       if (!companyStage) return;
-      companyStage.innerHTML = `<video src="${escapeHtml(COMPANY_VIDEO.src)}" controls autoplay playsinline preload="auto"></video>`;
+      companyStage.innerHTML = `<video src="${escapeHtml(COMPANY_VIDEO.src)}" poster="${escapeHtml(COMPANY_VIDEO.poster)}" controls autoplay playsinline preload="metadata"></video>`;
       watchVideos(companyStage);
     });
 
