@@ -226,30 +226,19 @@ export function initHomePage(root) {
                 </div>
               </div>
 
-              <div class="spec-rows">
-                ${LOCK_STONE_SYSTEM.specs
-                  .slice(0, 4)
-                  .map(
-                    (sp) => `<div class="spec-row">
-                      <span style="color:rgba(237,230,214,0.65);">${escapeHtml(sp.label[lang])}</span>
-                      <span style="color:#FBF9F4;font-weight:500;">${escapeHtml(typeof sp.value === 'string' ? sp.value : sp.value[lang])}</span>
-                    </div>`
-                  )
-                  .join('')}
-              </div>
             </div>
 
-            <div class="steps-grid">
-              ${LOCK_STONE_SYSTEM.steps
+            <div class="ls-home-photos">
+              ${[
+                [SITE_PHOTOS.blockTwoHolesGrass, 1280, 960, 'Lock Stone block with two pin holes', 'بلوك لوك ستون بفتحتي أسياخ التثبيت'],
+                [SITE_PHOTOS.curvedSteppedWallA, 960, 1280, 'Curved stepped Lock Stone wall', 'حائط لوك ستون منحنٍ ومدرج'],
+                [SITE_PHOTOS.steppedWallTrees, 960, 1280, 'Stepped Lock Stone wall with trees', 'حائط لوك ستون مدرج مع أشجار'],
+                [SITE_PHOTOS.blockFaceTop, 1200, 1600, 'Lock Stone block face and top', 'وجه البلوك وسطحه العلوي'],
+              ]
                 .map(
-                  (st, idx) => `<div class="step-card interactive-card reveal" data-variant="spec" data-delay="${idx * 65}">
-                  <div>
-                    <div class="font-mono-tech" style="font-size:1.5rem;font-weight:600;color:var(--accent);margin-bottom:0.75rem;">${escapeHtml(st.course)}</div>
-                    <h3 class="cap-title" style="color:#FBF9F4;">${escapeHtml(st.title[lang])}</h3>
-                    <p style="font-size:0.875rem;color:rgba(251,249,244,0.75);line-height:1.6;">${escapeHtml(st.description[lang])}</p>
-                  </div>
-                  <div class="step-card-foot">${escapeHtml(st.specCallout[lang])}</div>
-                </div>`
+                  ([src, w, hgt, en, ar], idx) => `<figure class="reveal" data-delay="${idx * 65}">
+                  <img src="${escapeHtml(src)}" alt="${escapeHtml(lang === 'ar' ? ar : en)}" width="${w}" height="${hgt}" loading="lazy" decoding="async" />
+                </figure>`
                 )
                 .join('')}
             </div>

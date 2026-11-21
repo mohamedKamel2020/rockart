@@ -8,7 +8,6 @@ import {
 } from './data.js';
 import { filterProducts } from './engineering.js';
 import { refreshAllInteractions } from './animations.js';
-import { mountProductSlider } from './gallery.js';
 import { escapeHtml, icon, renderMaterialSwatch } from './icons.js';
 import {
   clearShortlist,
@@ -26,7 +25,6 @@ export function initProductsPage(root) {
   let category = 'all';
   let styleFilter = 'all';
   let search = '';
-  let galleryCtrl = null;
   let unsubShortlist = null;
 
   function renderShortlistAndGrid() {
@@ -98,7 +96,6 @@ export function initProductsPage(root) {
           const searchInput = root.querySelector('#catalog-search-input');
           if (searchInput) searchInput.value = '';
           syncFilterButtonStates();
-          if (galleryCtrl) galleryCtrl.setCategory('all');
           renderShortlistAndGrid();
         });
       } else {
@@ -173,10 +170,6 @@ export function initProductsPage(root) {
   }
 
   function render() {
-    if (galleryCtrl) {
-      galleryCtrl.destroy();
-      galleryCtrl = null;
-    }
     if (unsubShortlist) {
       unsubShortlist();
       unsubShortlist = null;
@@ -211,23 +204,6 @@ export function initProductsPage(root) {
           </div>
           <h1 class="h1-page text-balance">${escapeHtml(UI_COPY.claddingHeading[lang])}</h1>
           <p class="page-lead">${escapeHtml(UI_COPY.claddingLead[lang])}</p>
-        </div>
-      </section>
-
-      <!-- Auto-playing Product Slider -->
-      <section class="section-paper-compact gallery-section-clip" style="border-bottom:1px solid var(--border-subtle);">
-        <div class="container">
-          <div style="margin-bottom:1.5rem;" class="reveal">
-            <div class="eyebrow">
-              <span class="eyebrow-bar"></span>
-              <span>${lang === 'ar' ? 'معرض المنتجات' : 'Product Showcase'}</span>
-            </div>
-            <h2 class="h2-section" style="font-size:1.75rem;">
-              ${lang === 'ar' ? 'تصفّح ألواح التكسية والأصص' : 'Browse Cladding & Planters'}
-            </h2>
-          </div>
-
-          <div id="products-immersive-gallery"></div>
         </div>
       </section>
 
@@ -285,10 +261,10 @@ export function initProductsPage(root) {
             <div style="max-width:42rem;margin-bottom:2rem;" class="reveal">
               <div class="eyebrow">
                 <span class="eyebrow-bar"></span>
-                <span>${lang === 'ar' ? 'عينات إضافية ونشرات الكتالوج المعتمدة' : 'Additional Factory Swatches & Reference Sheets'}</span>
+                <span>${lang === 'ar' ? 'عينات إضافية ولوحات الكتالوج' : 'Additional Swatches & Catalog Plates'}</span>
               </div>
               <h2 class="h2-section" style="font-size:1.75rem;">
-                ${lang === 'ar' ? 'أكواد الطوب الإنجليزي الإضافية ونشرات روك آرت' : 'Extended English Brick Finishes & Official Catalog Plates'}
+                ${lang === 'ar' ? 'أكواد الطوب الإنجليزي الإضافية ولوحات المنتجات' : 'Extended English Brick Finishes & Product Catalog Plates'}
               </h2>
             </div>
 
@@ -306,27 +282,33 @@ export function initProductsPage(root) {
                 </button>`
               ).join('')}
 
-              <button type="button" data-plate-zoom="sheet9" class="product-card interactive-card reveal group" data-variant="project" style="text-align:start;">
+              <button type="button" data-plate-zoom="greek" class="product-card interactive-card reveal group" data-variant="project" style="text-align:start;">
                 <div class="brochure-sheet-box" style="aspect-ratio:4/3;">
-                  <img src="${escapeHtml(UPLOADED_PHOTOS.brochureSlide9GreekStoneGrid)}" alt="${lang === 'ar' ? 'لوحة 9: 6 خامات للحجر اليوناني المُصنع' : 'Greek Manufactured Stone 6-Texture Brochure Grid'}" loading="lazy" class="brochure-sheet-img" />
+                  <img src="${escapeHtml(UPLOADED_PHOTOS.catalogGreekTextures)}" alt="${lang === 'ar' ? 'الحجر اليوناني المُصنع: 6 خامات' : 'Greek artificial stone: 6 textures'}" loading="lazy" class="brochure-sheet-img" style="object-fit:cover;" />
                 </div>
                 <div style="padding:1rem;">
-                  <div class="font-mono-tech" style="font-size:0.6875rem;color:var(--accent-eyebrow);margin-bottom:0.125rem;">BROCHURE SHEET 09</div>
-                  <div class="font-display" style="font-weight:600;color:var(--ink-primary);">
-                    ${lang === 'ar' ? 'تشكيلة الحجر اليوناني المُصنع (6 خامات)' : 'Greek Stone 6-Texture Reference'}
-                  </div>
+                  <div class="font-mono-tech" style="font-size:0.6875rem;color:var(--accent-eyebrow);margin-bottom:0.125rem;">${lang === 'ar' ? 'لوحة كتالوج' : 'CATALOG PLATE'}</div>
+                  <div class="font-display" style="font-weight:600;color:var(--ink-primary);">${lang === 'ar' ? 'الحجر اليوناني المُصنع: 6 خامات' : 'Greek artificial stone: 6 textures'}</div>
                 </div>
               </button>
 
-              <button type="button" data-plate-zoom="sheet10" class="product-card interactive-card reveal group" data-variant="project" style="text-align:start;">
+              <button type="button" data-plate-zoom="grc" class="product-card interactive-card reveal group" data-variant="project" style="text-align:start;">
                 <div class="brochure-sheet-box" style="aspect-ratio:4/3;">
-                  <img src="${escapeHtml(UPLOADED_PHOTOS.brochureSlide10CurbsGrc)}" alt="${lang === 'ar' ? 'لوحة 10: كتالوج البردورات والإنترلوك ومنتجات GRC' : 'Curbs Interlocks and GRC 2001-2009 Catalog Plate'}" loading="lazy" class="brochure-sheet-img" />
+                  <img src="${escapeHtml(UPLOADED_PHOTOS.catalogGrcCodes)}" alt="${lang === 'ar' ? 'منتجات الجي آر سي (أكواد 2001–2009)' : 'GRC products (codes 2001–2009)'}" loading="lazy" class="brochure-sheet-img" style="object-fit:cover;" />
                 </div>
                 <div style="padding:1rem;">
-                  <div class="font-mono-tech" style="font-size:0.6875rem;color:var(--accent-eyebrow);margin-bottom:0.125rem;">BROCHURE SHEET 10</div>
-                  <div class="font-display" style="font-weight:600;color:var(--ink-primary);">
-                    ${lang === 'ar' ? 'البردورات والإنترلوك ومنتجات G.R.C' : 'Curbs, Pavers & GRC (2001–2009)'}
-                  </div>
+                  <div class="font-mono-tech" style="font-size:0.6875rem;color:var(--accent-eyebrow);margin-bottom:0.125rem;">${lang === 'ar' ? 'لوحة كتالوج' : 'CATALOG PLATE'}</div>
+                  <div class="font-display" style="font-weight:600;color:var(--ink-primary);">${lang === 'ar' ? 'منتجات الجي آر سي (أكواد 2001–2009)' : 'GRC products (codes 2001–2009)'}</div>
+                </div>
+              </button>
+
+              <button type="button" data-plate-zoom="curbs" class="product-card interactive-card reveal group" data-variant="project" style="text-align:start;">
+                <div class="brochure-sheet-box" style="aspect-ratio:4/3;">
+                  <img src="${escapeHtml(UPLOADED_PHOTOS.catalogCurbsCodes)}" alt="${lang === 'ar' ? 'البردورات والإنترلوك (أكواد 1001–1008)' : 'Curbs & interlocking pavers (codes 1001–1008)'}" loading="lazy" class="brochure-sheet-img" style="object-fit:cover;" />
+                </div>
+                <div style="padding:1rem;">
+                  <div class="font-mono-tech" style="font-size:0.6875rem;color:var(--accent-eyebrow);margin-bottom:0.125rem;">${lang === 'ar' ? 'لوحة كتالوج' : 'CATALOG PLATE'}</div>
+                  <div class="font-display" style="font-weight:600;color:var(--ink-primary);">${lang === 'ar' ? 'البردورات والإنترلوك (أكواد 1001–1008)' : 'Curbs & interlocking pavers (codes 1001–1008)'}</div>
                 </div>
               </button>
             </div>
@@ -337,25 +319,10 @@ export function initProductsPage(root) {
       ${renderStrataDivider()}
     `;
 
-    const galleryMount = root.querySelector('#products-immersive-gallery');
-    if (galleryMount) {
-      galleryCtrl = mountProductSlider(galleryMount, {
-        products: ALL_PRODUCTS,
-        initialCategory: category,
-        showCategoryFilter: true,
-        onCategorySelect: (nextCat) => {
-          category = nextCat;
-          syncFilterButtonStates();
-          renderShortlistAndGrid();
-        },
-      });
-    }
-
     root.querySelectorAll('[data-prod-cat]').forEach((btn) => {
       btn.addEventListener('click', () => {
         category = btn.dataset.prodCat;
         syncFilterButtonStates();
-        if (galleryCtrl) galleryCtrl.setCategory(category);
         renderShortlistAndGrid();
       });
     });
@@ -394,19 +361,15 @@ export function initProductsPage(root) {
       });
     });
 
+    const PLATES = {
+      greek: { src: UPLOADED_PHOTOS.catalogGreekTextures, ar: 'الحجر اليوناني المُصنع: 6 خامات', en: 'Greek artificial stone: 6 textures' },
+      grc: { src: UPLOADED_PHOTOS.catalogGrcCodes, ar: 'منتجات الجي آر سي (أكواد 2001–2009)', en: 'GRC products (codes 2001–2009)' },
+      curbs: { src: UPLOADED_PHOTOS.catalogCurbsCodes, ar: 'البردورات والإنترلوك (أكواد 1001–1008)', en: 'Curbs & interlocking pavers (codes 1001–1008)' },
+    };
     root.querySelectorAll('[data-plate-zoom]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        if (btn.dataset.plateZoom === 'sheet9') {
-          openSheetZoomModal({
-            src: UPLOADED_PHOTOS.brochureSlide9GreekStoneGrid,
-            title: lang === 'ar' ? 'الحجر اليوناني المُصنع — 6 خامات' : 'Greek Manufactured Stone 6-Texture Guide',
-          });
-        } else {
-          openSheetZoomModal({
-            src: UPLOADED_PHOTOS.brochureSlide10CurbsGrc,
-            title: lang === 'ar' ? 'البردورات والإنترلوك ومنتجات GRC (2001–2009)' : 'Precast Curbs, Interlocks & GRC (Codes 2001–2009)',
-          });
-        }
+        const pl = PLATES[btn.dataset.plateZoom];
+        if (pl) openSheetZoomModal({ src: pl.src, title: pl[lang] });
       });
     });
 
@@ -527,7 +490,7 @@ export function initProductDetailPage(root, skuParam) {
                 <div class="spec-table-row">
                   <span class="font-mono-tech" style="color:var(--ink-secondary);">${lang === 'ar' ? 'الخامة والتصنيع' : 'Material Composition'}</span>
                   <span style="font-weight:500;color:var(--ink-primary);">
-                    ${product.category === 'planter' ? (lang === 'ar' ? 'خرسانة مصبوبة معزولة' : 'Waterproof Cast Stone') : 'Fiberglass-Reinforced Concrete (GRC)'}
+                    ${product.category === 'planter' ? (lang === 'ar' ? 'خرسانة مصبوبة' : 'Cast stone') : (lang === 'ar' ? 'بلاط صناعي' : 'Artificial stone tile')}
                   </span>
                 </div>
               </div>

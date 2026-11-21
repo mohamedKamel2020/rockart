@@ -130,14 +130,14 @@ const META = {
   },
   products: {
     ar: {
-      title: 'كتالوج التكسية الحجرية وطوب GRC والأصص الخرسانية | روك آرت',
+      title: 'كتالوج التكسية الحجرية والطوب الصناعي والأصص الخرسانية | روك آرت',
       description:
-        'تصفح 14 منتجاً: ألواح تكسية حجرية وطوب صناعي جي آر سي، وأصص ونوافير حدائق خرسانية مصنّعة في مصر. المقاسات والألوان وطلب عينة وعرض سعر.',
+        'تصفح 14 منتجاً: بلاط صناعي لتكسية الحوائط بالطرز اليوناني والأسباني والإنجليزي، وأصص ونوافير حدائق خرسانية. المقاسات والألوان وطلب عينة وعرض سعر.',
     },
     en: {
-      title: 'GRC Stone & Brick Cladding and Cast-Stone Planters Catalog | Rock Art',
+      title: 'Stone & Brick Cladding and Cast-Stone Planters Catalog | Rock Art',
       description:
-        'Browse 14 products: GRC stone and brick cladding panels, cast-stone planters and garden fountains manufactured in Egypt.',
+        'Browse the catalog: Greek, Spanish and English artificial stone and brick cladding tiles, cast-stone planters and garden fountains.',
     },
   },
   projects: {
@@ -156,12 +156,12 @@ const META = {
     ar: {
       title: 'اتصل بنا واطلب عرض سعر | روك آرت أبو رواش الجيزة',
       description:
-        'تواصل مع مهندسي روك آرت: الكيلو 26 طريق مصر إسكندرية الصحراوي، أبو رواش، الجيزة. هاتف وواتساب 01064611274 أو أرسل أبعاد مشروعك لعرض سعر.',
+        'تواصل مع روك آرت: الكيلو 26 طريق مصر إسكندرية الصحراوي، أبو رواش، الجيزة. هاتف وواتساب 01064611274 أو أرسل أبعاد مشروعك لعرض سعر.',
     },
     en: {
       title: 'Contact & Request a Quote | Rock Art Abu Rawash, Giza',
       description:
-        'Speak with Rock Art engineers at Kilo 26 Abu Rawash, Giza or submit project dimensions for a Lock Stone or cladding quote.',
+        'Contact Rock Art at Kilo 26 Abu Rawash, Giza or submit project dimensions for a Lock Stone or cladding quote.',
     },
   },
   'not-found': {

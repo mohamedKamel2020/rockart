@@ -60,7 +60,7 @@ export function initAboutPage(root) {
                 </div>
                 <div class="about-fact">
                   <dt>${ABOUT_CONTENT.capabilities.length}</dt>
-                  <dd>${lang === 'ar' ? 'قطاعات إنتاج' : 'Production divisions'}</dd>
+                  <dd>${lang === 'ar' ? 'خطوط إنتاج' : 'Product lines'}</dd>
                 </div>
                 <div class="about-fact">
                   <dt>${lang === 'ar' ? 'كيلو 26' : 'Kilo 26'}</dt>
@@ -87,7 +87,7 @@ export function initAboutPage(root) {
                 <img src="${escapeHtml(UPLOADED_PHOTOS.courtyardSteppedPyramidFront)}" alt="${lang === 'ar' ? 'بلوك لوك ستون مرصوص بشكل هرمي بأرض المعرض' : 'Lock Stone blocks stacked in a stepped pyramid in the showroom yard'}" loading="lazy" decoding="async" class="media-zoom-img--subtle" />
               </figure>
               <figure class="about-mosaic-tile group reveal" data-delay="140">
-                <img src="${escapeHtml(UPLOADED_PHOTOS.courtyardSteppedPyramidOblique)}" alt="${lang === 'ar' ? 'بلوك لوك ستون بالألوان الطبيعية بجوار تكسية الجي آر سي' : 'Lock Stone blocks in natural tones beside GRC cladding'}" loading="lazy" decoding="async" class="media-zoom-img--subtle" />
+                <img src="${escapeHtml(UPLOADED_PHOTOS.courtyardSteppedPyramidOblique)}" alt="${lang === 'ar' ? 'بلوك لوك ستون بالألوان الطبيعية بجوار التكسية' : 'Lock Stone blocks in natural tones beside cladding'}" loading="lazy" decoding="async" class="media-zoom-img--subtle" />
               </figure>
             </div>
           </div>
@@ -103,7 +103,7 @@ export function initAboutPage(root) {
               <span>${lang === 'ar' ? 'خطوط الإنتاج والتصنيع' : 'Production Lines'}</span>
             </div>
             <h2 class="h2-section text-balance">
-              ${lang === 'ar' ? 'أربعة قطاعات صناعية تحت سقف واحد' : 'Four Specialized Divisions Under One Roof'}
+              ${lang === 'ar' ? 'أربعة خطوط إنتاج من مصنع واحد' : 'Four Product Lines from One Factory'}
             </h2>
           </div>
 
@@ -129,7 +129,7 @@ export function initAboutPage(root) {
           <div style="max-width:36rem;margin-bottom:2.5rem;" class="reveal">
             <div class="eyebrow">
               <span class="eyebrow-bar"></span>
-              <span>${lang === 'ar' ? 'الاعتمادات والاختبارات القياسية' : 'Quality Assurance'}</span>
+              <span>${lang === 'ar' ? 'البراءة والخامات' : 'Patent & Materials'}</span>
             </div>
             <h2 class="h2-section text-balance">
               ${lang === 'ar' ? 'براءة الاختراع ومكونات المنظومة' : 'Official Patent & System Materials'}
@@ -175,9 +175,6 @@ export function initAboutPage(root) {
               </p>
             </div>
 
-            <button type="button" id="about-open-brochure-slide" class="showroom-brochure-thumb group" style="position:relative;" aria-label="${lang === 'ar' ? 'فتح لوحة تعريف المصنع رقم 1' : 'Open Official Factory Overview Slide'}">
-              <img src="${escapeHtml(UPLOADED_PHOTOS.brochureSlide1About)}" alt="${lang === 'ar' ? 'لوحة تعريف شركة روك آرت من الكتالوج الرسمي' : 'Rock Art company overview official Arabic catalog slide'}" loading="lazy" class="brochure-sheet-img" />
-            </button>
           </div>
 
           <div class="showroom-grid">
@@ -206,7 +203,7 @@ export function initAboutPage(root) {
               <span>${escapeHtml(UI_COPY.clientsEyebrow[lang])}</span>
             </div>
             <h2 class="h2-section h2-section--inverse text-balance">
-              ${lang === 'ar' ? 'شركاء النجاح في المشروعات الكبرى' : 'Trusted by Leading Developers & Contractors'}
+              ${lang === 'ar' ? 'عملاء وشركاء عملنا معهم' : 'Clients and Partners We Have Worked With'}
             </h2>
           </div>
 
@@ -224,13 +221,6 @@ export function initAboutPage(root) {
       ${renderStrataDivider()}
     `;
 
-    root.querySelector('#about-open-brochure-slide')?.addEventListener('click', () => {
-      openSheetZoomModal({
-        src: UPLOADED_PHOTOS.brochureSlide1About,
-        title: lang === 'ar' ? 'تعريف شركة روك آرت للمنتجات الأسمنتية والديكور' : 'Rock Art Official Company Overview Slide',
-        caption: COMPANY_INFO.address[lang],
-      });
-    });
 
     root.querySelectorAll('[data-showroom-idx]').forEach((btn) => {
       btn.addEventListener('click', () => {

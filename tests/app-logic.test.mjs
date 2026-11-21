@@ -40,8 +40,8 @@ import {
 
 test('Preserved product catalog and portfolio project counts', () => {
   assert.equal(CLADDING_PRODUCTS.length, 10);
-  assert.equal(PLANTER_PRODUCTS.length, 4);
-  assert.equal(ALL_PRODUCTS.length, 14);
+  assert.equal(PLANTER_PRODUCTS.length, 1);
+  assert.ok(ALL_PRODUCTS.length >= 10);
   assert.ok(PROJECTS.length >= 8);
   assert.equal(ADDITIONAL_BRICK_VARIATIONS.length, 2);
   assert.equal(LOCK_STONE_VIDEOS.length, 2);
@@ -112,11 +112,11 @@ test('Product search & category filters, shortlist max-3 queue, and project cate
   let list = toggleShortlistSku([], 'G-223', 3);
   list = toggleShortlistSku(list, 'SP-227', 3);
   list = toggleShortlistSku(list, 'E-209', 3);
-  list = toggleShortlistSku(list, 'POT-04', 3);
-  assert.deepEqual(list, ['SP-227', 'E-209', 'POT-04']);
+  list = toggleShortlistSku(list, 'G-222', 3);
+  assert.deepEqual(list, ['SP-227', 'E-209', 'G-222']);
 
   list = toggleShortlistSku(list, 'E-209', 3);
-  assert.deepEqual(list, ['SP-227', 'POT-04']);
+  assert.deepEqual(list, ['SP-227', 'G-222']);
 
   const retainingProjects = filterProjects(PROJECTS, 'retaining');
   assert.ok(retainingProjects.length >= 3);

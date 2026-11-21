@@ -176,8 +176,7 @@ export function initLockStonePage(root) {
                 <span class="font-mono-tech" style="font-size:1.25rem;font-weight:600;color:var(--accent);">${escapeHtml(st.course)}</span>
                 <h3 class="font-display" style="font-weight:600;font-size:1.125rem;color:#FBF9F4;margin:0;">${escapeHtml(st.title[lang])}</h3>
               </div>
-              <p style="font-size:0.875rem;color:rgba(251,249,244,0.75);line-height:1.7;margin:0 0 1rem;">${escapeHtml(st.description[lang])}</p>
-              <div class="font-mono-tech ls-step-callout">${escapeHtml(st.specCallout[lang])}</div>
+              <p style="font-size:0.875rem;color:rgba(251,249,244,0.75);line-height:1.7;margin:0;">${escapeHtml(st.description[lang])}</p>
             </article>`
               )
               .join('')}

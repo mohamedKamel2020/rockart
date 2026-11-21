@@ -39,3 +39,10 @@
 - [ ] EgyptianWall500500.png (used as the poster of the Tahya Misr video, in the curved-walls slider and later in Projects) looks like an AI-recreated image of the real wall. Confirm with the client or replace it with the real photo.
 - [ ] Lock Stone page: 'Selected photos' captions are generic; the 500 500 caption only states the sign on a white Lock Stone wall.
 - [ ] Basalt wording removed (not in the sources); banded wall is described as charcoal/terracotta courses.
+- [ ] Products page: SKUs, dimensions (e.g. 50 x 20 cm tiles, POT sizes) and colour names come from the old catalog data and could not be verified from the PDFs. Descriptions were reduced to style + colour only; 'GRC / waterproof / UV / reinforced' wording removed. Product names invented by the site (e.g. 'Charcoal Noir', 'Smoked Manor Brick') need client confirmation.
+- [ ] Catalog plates now use crops of brochure sheets 9 and 10 (Latin codes only). The curb/paver and GRC codes (1001-1008, 2001-2009) are the client's own.
+- [ ] Removed projects: 'Brick Boundary Wall' (its photos were product swatches), 'Cast-Stone Planters' and 'Abu Rawash Showroom Garden' (same photo as the Products page, not delivered projects).
+- [ ] Planters POT-01C / POT-04 / POT-01D no longer show a photo (the only photo was a fountain shared by 4 products); they show a colour swatch until the client sends real photos and confirms the sizes.
+- [ ] About page: headline rewritten (no 'founded' / 'engineering office' claims). Showroom captions no longer say 'manufactured in-house' or 'hand-carved' (unverified). Confirm booth A16 details (event name, year) with the client.
+- [ ] Contact page: working hours (Sat-Thu 9-5) were removed (not in sources). Add real hours if the client confirms them. Quote-form product options now include Cladding tiles, GRC & GRP works and Interlocking pavers & curbs.
+- [ ] Removed the 3 planters without photos (POT-01C, POT-04, POT-01D). Re-add them when the client sends photos and confirms sizes. Home Lock Stone section now shows a 4-photo group instead of the 4 stages; the stage cards live only on the Lock Stone page.

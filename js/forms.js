@@ -317,7 +317,7 @@ export function initContactPage(root) {
             <div style="display:flex;flex-direction:column;gap:2rem;">
               <div>
                 <h2 class="h2-section h2-section--inverse" style="font-size:1.5rem;margin-bottom:1rem;">
-                  ${lang === 'ar' ? 'قنوات التواصل المباشر' : 'Direct Engineering Channels'}
+                  ${lang === 'ar' ? 'بيانات التواصل' : 'Contact Details'}
                 </h2>
 
                 <div class="channel-list">
@@ -339,7 +339,7 @@ export function initContactPage(root) {
                     ${icon('mail', 'icon-lg', 'color:var(--accent);margin-top:0.25rem;')}
                     <div>
                       <div class="font-mono-tech" style="font-size:0.75rem;color:rgba(237,230,214,0.6);text-transform:uppercase;">
-                        ${lang === 'ar' ? 'البريد الإلكتروني الرسمي' : 'Official Email'}
+                        ${lang === 'ar' ? 'البريد الإلكتروني' : 'Email'}
                       </div>
                       <a href="mailto:${escapeHtml(COMPANY_INFO.email)}" class="font-mono-tech" style="display:inline-block;margin-top:0.25rem;font-size:1rem;color:#FBF9F4;">
                         ${escapeHtml(COMPANY_INFO.email)}
@@ -363,12 +363,12 @@ export function initContactPage(root) {
 
               <div style="background-color:var(--surface-inverse-soft);border:1px solid var(--border-inverse);border-radius:var(--radius-sm);padding:1.25rem;font-size:0.8125rem;color:rgba(237,230,214,0.8);line-height:1.6;">
                 <div class="font-mono-tech" style="font-size:0.75rem;color:var(--accent);text-transform:uppercase;margin-bottom:0.375rem;">
-                  ${lang === 'ar' ? 'مواعيد العمل والاستشارات' : 'Operating Hours & Site Visits'}
+                  ${lang === 'ar' ? 'الزيارات والمعاينة' : 'Visits & Site Inspections'}
                 </div>
                 ${
                   lang === 'ar'
-                    ? 'السبت إلى الخميس: 9:00 صباحاً – 5:00 مساءً. يمكن حجز موعد مسبق لزيارة المعرض بالكيلو 26 أو طلب زيارة معاينة لموقع المشروع.'
-                    : 'Saturday to Thursday: 9:00 AM – 5:00 PM. Appointments available for factory sample reviews at Abu Rawash Kilo 26 or project site inspections.'
+                    ? 'لزيارة المصنع والمعرض بالكيلو 26 أو طلب معاينة لموقع المشروع، تواصل معنا هاتفياً أو عبر واتساب لتحديد موعد.'
+                    : 'To visit the factory and showroom at Kilo 26 or to request a project site inspection, call or message us on WhatsApp to arrange a time.'
                 }
               </div>
 

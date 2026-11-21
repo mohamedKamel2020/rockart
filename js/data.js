@@ -88,13 +88,10 @@ export const UPLOADED_PHOTOS = {
   courtyardSoftPyramidGeogrid:
     asset('/assets/images/191709371_144025481086574_3152827359385844266_n_9a1f0866.jpg'),
 
-  // Official Brochure Slides (Arabic Technical & Product Sheets 1–10)
-  brochureSlide1About:
-    asset('/assets/images/160919982_112587957563660_4835820083729871587_n_c55a2479.jpg'),
-  brochureSlide9GreekStoneGrid:
-    asset('/assets/images/160935991_112588347563621_99912756911722462_n_3284224f.jpg'),
-  brochureSlide10CurbsGrc:
-    asset('/assets/images/161423217_112588374230285_4429855566428586948_n_12229cee.jpg'),
+  // Catalog crops (no baked-in Arabic text) + the About brochure slide
+  catalogGreekTextures: asset('/assets/images/catalog-greek-textures.webp'),
+  catalogGrcCodes: asset('/assets/images/catalog-grc-codes.webp'),
+  catalogCurbsCodes: asset('/assets/images/catalog-curbs-interlock-codes.webp'),
 
   // Exhibition Booth A16 Photos
   expoWideOverview:
@@ -195,8 +192,8 @@ export const ABOUT_CONTENT = {
     ar: 'الكيلو 26، أبو رواش',
   },
   headline: {
-    en: 'A factory built on rock, run like an engineering office.',
-    ar: 'مصنع تأسس على الصخر، يُدار بعقلية مكتب هندسي',
+    en: 'From our Abu Rawash factory to the job site.',
+    ar: 'من مصنعنا في أبو رواش إلى موقع العمل',
   },
   paragraphs: {
     en: [
@@ -371,10 +368,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
     name: { en: 'Canyon Red', ar: 'أحمر كانيون' },
     description: { en: 'Layered sandstone face, rust & clay tones', ar: 'وجه حجر رملي متدرج بألوان الصدأ والطين' },
-    finishNote: {
-      en: 'Cast in high-density GRC with iron-oxide mineral pigments matched to natural canyon sandstone.',
-      ar: 'مصنوع من الجي آر سي عالي الكثافة بأصباغ معدنية مقاومة للأشعة فوق البنفسجية تحاكي الحجر الرملي الطبيعي.',
-    },
+    finishNote: { en: 'Greek-style artificial stone tile in rust and clay tones.', ar: 'بلاط صناعي بالطراز اليوناني بدرجات الصدأ والطين.' },
     dimensions: '50 × 20 × 2.5–4 cm',
     styleOrigin: { en: 'Greek Tile Style', ar: 'نمط البلاط اليوناني' },
     colors: ['#9B4425', '#B5562A', '#7A3A1C', '#C97A4B'],
@@ -385,10 +379,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
     name: { en: 'Split Quarry', ar: 'محجر مشقوق' },
     description: { en: 'Split-face ledger stone, salmon, orange & gold strata', ar: 'حجر مشقوق بطبقات وردية وبرتقالية وذهبية' },
-    finishNote: {
-      en: 'Deep cleft quarry relief combining warm ochre gold bands with salmon-pink and terracotta-orange strata.',
-      ar: 'ملمس محجر مشقوق يجمع بين الدرجات الذهبية الدافئة والوردي السلموني والبرتقالي الطوبي.',
-    },
+    finishNote: { en: 'Spanish-style artificial stone tile in ochre, salmon and terracotta tones.', ar: 'بلاط صناعي بالطراز الأسباني بدرجات الأوكر والسلموني والتيراكوتا.' },
     dimensions: '55 × 15 × 3–5 cm',
     styleOrigin: { en: 'Spanish Tile Style', ar: 'نمط البلاط الأسباني' },
     colors: ['#A68B5B', '#C98A6B', '#D9A066', '#C4AE84'],
@@ -400,10 +391,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
     name: { en: 'Slate Ridge', ar: 'سليت ريدج' },
     description: { en: 'Weathered slate ledger, grey & ochre', ar: 'حجر إردوازي متآكل بدرجات الرمادي والأصفر الترابي' },
-    finishNote: {
-      en: 'Chiseled grey slate strips with mineral ochre bands for contemporary facades.',
-      ar: 'شرائح إردوازية رمادية منحوتة مع أشرطة أصفر ترابي للواجهات العصرية.',
-    },
+    finishNote: { en: 'Greek-style artificial stone tile in grey and ochre tones.', ar: 'بلاط صناعي بالطراز اليوناني بدرجات الرمادي والأصفر الترابي.' },
     dimensions: '50 × 20 × 2.5–4 cm',
     styleOrigin: { en: 'Greek Tile Style', ar: 'نمط البلاط اليوناني' },
     colors: ['#5E5A55', '#8A857D', '#B08A3E', '#3A3733'],
@@ -415,10 +403,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
     name: { en: 'Desert Ledge', ar: 'ديزرت ليدج' },
     description: { en: 'Cream, grey & yellow ledger strips', ar: 'شرائح حجرية بدرجات الكريمي والرمادي والأصفر' },
-    finishNote: {
-      en: 'Sun-bleached limestone and warm Sahara sand strata tailored for coastal resorts and villas.',
-      ar: 'طبقات حجر جيري ورملي مشمس مثالية للمنتجعات الساحلية والفيلات.',
-    },
+    finishNote: { en: 'Spanish-style artificial stone tile in cream, grey and yellow tones.', ar: 'بلاط صناعي بالطراز الأسباني بدرجات الكريمي والرمادي والأصفر.' },
     dimensions: '55 × 15 × 2.5–4 cm',
     styleOrigin: { en: 'Spanish Tile Style', ar: 'نمط البلاط الأسباني' },
     colors: ['#D6C7AE', '#EDE6D6', '#D2A93A', '#7E7A73'],
@@ -430,10 +415,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
     name: { en: 'Walnut Strata', ar: 'والنت ستراتا' },
     description: { en: 'Warm walnut & cream banded ledger', ar: 'طبقات حجرية دافئة بالبني الجوزي والكريمي' },
-    finishNote: {
-      en: 'Alternating dark walnut and pale cream sedimentary bands with interlocking Z-joint edges.',
-      ar: 'طبقات رسوبية متبادلة من البني الجوزي والكريمي الفاتح بحواف متداخلة.',
-    },
+    finishNote: { en: 'Spanish-style artificial stone tile in walnut brown and cream bands.', ar: 'بلاط صناعي بالطراز الأسباني بطبقات البني الجوزي والكريمي.' },
     dimensions: '55 × 15 × 3–4.5 cm',
     styleOrigin: { en: 'Spanish Tile Style', ar: 'نمط البلاط الأسباني' },
     colors: ['#5E4332', '#7D5C46', '#D8CCB8', '#443023'],
@@ -445,10 +427,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
     name: { en: 'Terracotta Cliff', ar: 'تيراكوتا كليف' },
     description: { en: 'Rugged terracotta & sand cliff-face', ar: 'وجه صخري وعر بألوان التيراكوتا والرملي' },
-    finishNote: {
-      en: 'High-relief rock-face casting engineered to mirror desert escarpment strata.',
-      ar: 'صب صخري بارز التضاريس مصمم ليحاكي التدرجات الصخرية الصحراوية.',
-    },
+    finishNote: { en: 'Spanish-style artificial stone tile in terracotta and sand tones.', ar: 'بلاط صناعي بالطراز الأسباني بدرجات التيراكوتا والرملي.' },
     dimensions: '55 × 15 × 3.5–5.5 cm',
     styleOrigin: { en: 'Spanish Tile Style', ar: 'نمط البلاط الأسباني' },
     colors: ['#B5562A', '#C9895B', '#8C401F', '#DFCBB2'],
@@ -457,12 +436,9 @@ export const CLADDING_PRODUCTS = [
     sku: 'G-225',
     category: 'stone',
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
-    name: { en: 'Basalt Noir', ar: 'بازلت نوار' },
-    description: { en: 'Deep black split-face, matte basalt finish', ar: 'وجه أسود مشقوق بلمسة بازلتية غير لامعة' },
-    finishNote: {
-      en: 'Deep charcoal-black volcanic basalt finish with low-sheen architectural seal.',
-      ar: 'تشطيب بازلتي أسود فحمي غير لامع مع طبقة حماية معمارية.',
-    },
+    name: { en: 'Charcoal Noir', ar: 'شاركول نوار' },
+    description: { en: 'Dark charcoal split-face finish', ar: 'وجه فحمي داكن مشقوق' },
+    finishNote: { en: 'Greek-style artificial stone tile in a dark charcoal tone.', ar: 'بلاط صناعي بالطراز اليوناني بدرجة الفحمي الداكن.' },
     dimensions: '50 × 20 × 2.5–4 cm',
     styleOrigin: { en: 'Greek Tile Style', ar: 'نمط البلاط اليوناني' },
     colors: ['#1C1B19', '#2E2C29', '#423F3B', '#141311'],
@@ -474,10 +450,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
     name: { en: 'Alabaster White', ar: 'ألاباستر وايت' },
     description: { en: 'Bright white ledger with gold vein accent', ar: 'حجر أبيض فاتح بعروق ذهبية' },
-    finishNote: {
-      en: 'Bright alabaster-white architectural stone panels highlighted with subtle warm gold mineral veining.',
-      ar: 'ألواح حجرية بيضاء ناصعة مع عروق معدنية ذهبية دافئة.',
-    },
+    finishNote: { en: 'Spanish-style artificial stone tile in white with light gold accents.', ar: 'بلاط صناعي بالطراز الأسباني باللون الأبيض مع لمسات ذهبية فاتحة.' },
     dimensions: '55 × 15 × 2.5–4 cm',
     styleOrigin: { en: 'Spanish Tile Style', ar: 'نمط البلاط الأسباني' },
     colors: ['#F4F0E6', '#E5DEC9', '#C8A96E', '#FAF8F2'],
@@ -488,10 +461,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Stone Face', ar: 'وجه حجري' },
     name: { en: 'Sienna Ledger', ar: 'سيينا ليدجر' },
     description: { en: 'Rich sienna & amber stacked stone', ar: 'حجر مكدّس بألوان السيينا والكهرماني' },
-    finishNote: {
-      en: 'Warm burnt-sienna and amber stacked stone modules suitable for feature walls and boundary facades.',
-      ar: 'وحدات حجرية مكدسة بألوان السيينا المحروقة والكهرمان للواجهات والأسوار.',
-    },
+    finishNote: { en: 'Spanish-style artificial stone tile in sienna and amber tones.', ar: 'بلاط صناعي بالطراز الأسباني بدرجات السيينا والكهرماني.' },
     dimensions: '55 × 15 × 3–4.5 cm',
     styleOrigin: { en: 'Spanish Tile Style', ar: 'نمط البلاط الأسباني' },
     colors: ['#A65928', '#C67B39', '#7C3E18', '#D9A66C'],
@@ -503,10 +473,7 @@ export const CLADDING_PRODUCTS = [
     typeLabel: { en: 'Brick Face', ar: 'وجه طوب' },
     name: { en: 'English Brick', ar: 'طوب إنجليزي' },
     description: { en: 'Classic running-bond brick, sand finish', ar: 'طوب كلاسيكي بنمط الإنجليزي ولمسة رملية' },
-    finishNote: {
-      en: 'Thin-profile cast GRC running-bond brick veneer offering authentic sand-finished mortar shadow lines.',
-      ar: 'شرائح طوب إنجليزي من الجي آر سي بملمس رملي كلاسيكي وخطوط لحام دقيقة.',
-    },
+    finishNote: { en: 'English-style artificial brick tile with a sand finish.', ar: 'بلاط صناعي بطراز الطوب الإنجليزي بلمسة رملية.' },
     dimensions: '24 × 7 × 1.8 cm',
     styleOrigin: { en: 'English Tile Style', ar: 'نمط البلاط الإنجليزي' },
     colors: ['#D6C4A6', '#C2AD8B', '#E5D9C3', '#A89372'],
@@ -514,60 +481,9 @@ export const CLADDING_PRODUCTS = [
 ];
 
 export const PLANTER_PRODUCTS = [
-  {
-    sku: 'POT-01C',
-    category: 'planter',
-    typeLabel: { en: 'Cast-Stone Planter', ar: 'أصيص خرساني' },
-    name: { en: 'Cylinder Grey', ar: 'أسطواني رمادي' },
-    description: {
-      en: 'Cylindrical concrete planter for courtyards and gardens.',
-      ar: 'أصيص خرساني أسطواني للساحات والحدائق.',
-    },
-    finishNote: {
-      en: 'Cast in fiber-reinforced concrete with integrated drainage port and weather-sealed matte stone finish.',
-      ar: 'مصنوع من الخرسانة المسلحة بالألياف مع فتحة تصريف مدمجة وتشطيب حجري غير لامع مقاوم للعوامل الجوية.',
-    },
-    dimensions: '90 × 100 cm',
-    styleOrigin: { en: 'Cast-Stone Garden Range', ar: 'تشكيلة أصص الحدائق' },
-    colors: ['#7B766E', '#5B5650', '#9D978E'],
-    image: UPLOADED_PHOTOS.gardenFountainShowroom,
-  },
-  {
-    sku: 'POT-04',
-    category: 'planter',
-    typeLabel: { en: 'Cast-Stone Planter', ar: 'أصيص خرساني' },
-    name: { en: 'Ribbed Barrel', ar: 'برميل مخدد' },
-    description: {
-      en: 'Vertically fluted barrel planter for terraces, lobbies and walkways.',
-      ar: 'أصيص برميلي مخدد رأسياً للتراسات والمداخل والممرات.',
-    },
-    finishNote: {
-      en: 'Precision-molded vertical ribs cast in solid stone-grey concrete.',
-      ar: 'تضليعات رأسية دقيقة الصب في خرسانة صلبة باللون الرمادي الحجري.',
-    },
-    dimensions: '55 × 90 cm',
-    styleOrigin: { en: 'Cast-Stone Garden Range', ar: 'تشكيلة أصص الحدائق' },
-    colors: ['#8C857B', '#67625A', '#ABA499'],
-    image: UPLOADED_PHOTOS.gardenFountainShowroom,
-  },
-  {
-    sku: 'POT-01D',
-    category: 'planter',
-    typeLabel: { en: 'Cast-Stone Planter', ar: 'أصيص خرساني' },
-    name: { en: 'Cylinder Grey XL', ar: 'أسطواني رمادي كبير' },
-    description: {
-      en: 'Large-size planter for landscape focal points.',
-      ar: 'أصيص كبير الحجم لنقاط الارتكاز في تنسيق الحدائق.',
-    },
-    finishNote: {
-      en: 'Extra-large monolithic cylinder cast with internal reinforcement mesh.',
-      ar: 'أسطوانة خرسانية ضخمة مسلحة داخلياً لتحمل التربة والأشجار الكبيرة.',
-    },
-    dimensions: '110 × 125 cm',
-    styleOrigin: { en: 'Cast-Stone Garden Range', ar: 'تشكيلة أصص الحدائق' },
-    colors: ['#69645D', '#4A4640', '#8C857B'],
-    image: UPLOADED_PHOTOS.gardenFountainShowroom,
-  },
+  // Removed (no photo, unverified size): POT-01C
+  // Removed (no photo, unverified size): POT-04
+  // Removed (no photo, unverified size): POT-01D
   {
     sku: 'GARDEN-RANGE',
     category: 'planter',
@@ -577,10 +493,7 @@ export const PLANTER_PRODUCTS = [
       en: 'Classic tiered cast-stone garden fountains, urns, and statuary for villas, hotels, and palaces.',
       ar: 'نوافير حدائق كلاسيكية متعددة الطبقات ومزهريات وتماثيل زخرفية للفلل والفنادق والقصور.',
     },
-    finishNote: {
-      en: 'Made to order with custom hydraulic piping channels and antique limestone patina.',
-      ar: 'تُصنّع حسب الطلب مع مجاري توصيل المياه وتشطيب الحجر الجيري العتيق.',
-    },
+    finishNote: { en: 'Fountains, urns and statuary made to order.', ar: 'نوافير ومزهريات وتماثيل تُصنّع حسب الطلب.' },
     dimensions: 'Made to order / تُصنّع حسب الطلب',
     styleOrigin: { en: 'Cast-Stone Garden Range', ar: 'تشكيلة أصص الحدائق' },
     colors: ['#D6C7AE', '#B7A68B', '#8C857B'],
@@ -795,13 +708,6 @@ export const PROJECTS = [
           ar: 'مغارة وصخور جي آر سي صناعية ومقاعد حدائق منحوتة في معرض أبو رواش',
         },
       },
-      {
-        src: UPLOADED_PHOTOS.gardenFountainShowroom,
-        caption: {
-          en: 'Adjoining cast-stone courtyard fountain and stone cladding sample wall',
-          ar: 'ساحة العرض المجاورة بالنافورة متعددة الطبقات وحائط عينات التكسية',
-        },
-      },
     ],
   },
   /* UNVERIFIED (Seashell Development removed: not in the client's portfolio, AI image):
@@ -906,42 +812,7 @@ export const PROJECTS = [
       },
     ],
   },
-  {
-    slug: 'brick-boundary-wall',
-    category: 'cladding',
-    categoryLabel: { en: 'Cladding & GRC', ar: 'الكسوة وجي آر سي' },
-    title: { en: 'Brick Boundary Wall', ar: 'حائط طوب حدودي' },
-    caption: {
-      en: 'English Brick boundary wall cladding, E-209 sand finish',
-      ar: 'تكسية أسوار بالطوب الإنجليزي E-209 بلمسة رملية',
-    },
-    summary: {
-      en: 'Sand-toned English Brick boundary perimeter cladding delivering warm architectural texture across compound entry walls.',
-      ar: 'تكسية أسوار حدودية بالطوب الإنجليزي ذي اللون الرملي لإبراز الطابع المعماري للمداخل.',
-    },
-    scope: {
-      en: 'Supply and installation of E-209 sand-finish English Brick panels.',
-      ar: 'توريد وتركيب ألواح الطوب الإنجليزي E-209 بلمسة رملية.',
-    },
-    specs: ['E-209 English Brick', 'Running-Bond Pattern', 'Weather-Sealed Finish'],
-    image: UPLOADED_PHOTOS.skuE206,
-    gallery: [
-      {
-        src: UPLOADED_PHOTOS.skuE215,
-        caption: {
-          en: 'English Brick studio finish E-215 (sand, terracotta & charred accent blend)',
-          ar: 'عينة الطوب الإنجليزي كود E-215 بالدرجات الرملية والمعتقة',
-        },
-      },
-      {
-        src: UPLOADED_PHOTOS.skuE206,
-        caption: {
-          en: 'English Brick studio finish E-206 (smoked burnt-terracotta with white mortar joints)',
-          ar: 'عينة الطوب الإنجليزي كود E-206 بالطوب المحروق وعراميس بيضاء',
-        },
-      },
-    ],
-  },
+  // Removed (UNVERIFIED / duplicate of Products imagery): brick-boundary-wall
   {
     slug: 'lock-stone-ready-to-ship',
     category: 'retaining',
@@ -971,55 +842,8 @@ export const PROJECTS = [
       },
     ],
   },
-  {
-    slug: 'lobby-planter-install',
-    category: 'landscape',
-    categoryLabel: { en: 'Landscaping & Planters', ar: 'تنسيق الحدائق والأصص' },
-    title: { en: 'Cast-Stone Planters for Courtyards & Gardens', ar: 'أصص خرسانية للساحات والحدائق' },
-    caption: {
-      en: 'Fluted cast-stone planters in a courtyard garden setting',
-      ar: 'أصص خرسانية مخددة في ساحة حدائق',
-    },
-    summary: {
-      en: 'Cast-stone Cylinder Grey and Ribbed Barrel planters in several sizes for entrances, courtyards and gardens.',
-      ar: 'أصص خرسانية مصبوبة أسطوانية ومخددة بعدة أحجام للمداخل والساحات والحدائق.',
-    },
-    scope: {
-      en: 'Casting in standard or custom dimensions with a weather-resistant stone finish.',
-      ar: 'صب بأبعاد قياسية أو مخصصة بتشطيب حجري مقاوم للعوامل الجوية.',
-    },
-    specs: ['POT-01C / POT-01D / POT-04', '90×100 cm to 110×125 cm', 'Cast Concrete'],
-    image: UPLOADED_PHOTOS.gardenFountainShowroom,
-  },
-  {
-    slug: 'full-terrace-elevation',
-    category: 'landscape',
-    categoryLabel: { en: 'Landscaping & Planters', ar: 'تنسيق الحدائق والأصص' },
-    title: { en: 'Abu Rawash Showroom Garden', ar: 'حديقة عرض مصنع أبو رواش' },
-    caption: {
-      en: 'Abu Rawash showroom landscape showcase — fountain, walkways & GRC elements',
-      ar: 'تشكيلة تنسيق الحدائق بحديقة مصنع أبو رواش — نوافير ومشايات وأعمال GRC',
-    },
-    summary: {
-      en: 'The factory showroom garden with a cast-stone fountain, interlocking paths, GRC elements and cladding sample walls.',
-      ar: 'حديقة عرض المصنع بنافورة حجرية ومشايات إنترلوك وعناصر جي آر سي وحوائط عينات التكسية.',
-    },
-    scope: {
-      en: 'Landscape layout and execution using the factory’s own cast-stone, GRC and interlocking products.',
-      ar: 'تنسيق وتنفيذ الحديقة بمنتجات المصنع من الحجر الصناعي والجي آر سي والإنترلوك.',
-    },
-    specs: ['Cast-Stone Fountain', 'Interlocking Paths', 'GRC Elements'],
-    image: UPLOADED_PHOTOS.gardenFountainShowroom,
-    gallery: [
-      {
-        src: UPLOADED_PHOTOS.gardenFountainShowroom,
-        caption: {
-          en: 'Outdoor fountain, interlocking paths & cladding sample perimeter wall',
-          ar: 'النافورة الحجرية ومشايات الإنترلوك وسور عرض عينات التكسية',
-        },
-      },
-    ],
-  },
+  // Removed (UNVERIFIED / duplicate of Products imagery): lobby-planter-install
+  // Removed (showroom garden, not a delivered project; same photo as the Products page): full-terrace-elevation
 ];
 
 export const CLIENTS = [
@@ -1044,7 +868,15 @@ export const QUOTE_INTERESTS = [
   },
   {
     value: 'GRC decorative cladding',
-    label: { en: 'GRC decorative cladding', ar: 'كسوة ديكورية' },
+    label: { en: 'Cladding tiles (Greek / Spanish / English)', ar: 'بلاط تكسية (يوناني / أسباني / إنجليزي)' },
+  },
+  {
+    value: 'GRC & GRP works',
+    label: { en: 'GRC & GRP works', ar: 'أعمال جي آر سي وجي آر بي' },
+  },
+  {
+    value: 'Interlocking pavers & curbs',
+    label: { en: 'Interlocking pavers & curbs', ar: 'إنترلوك وبردورات' },
   },
   {
     value: 'Planters & garden range',
@@ -1204,7 +1036,7 @@ export const SHOWROOM_AND_EXPO_GALLERY = [
       ar: 'جناح روك آرت A16 بالمعرض — نظرة عامة',
     },
     caption: {
-      en: 'Exhibition booth showcasing Rock Art Lock Stone demo wall, GRC sample boards, and circular & grid fiberglass rebar manufactured in-house.',
+      en: 'Exhibition booth with a Lock Stone demo wall, cladding sample boards, and coiled and gridded fiberglass reinforcement.',
       ar: 'جناح المعرض يضم حائط لوك ستون تطبيقي، لوحات عينات التكسية، ولفات وشبكات التسليح بالفيبر جلاس.',
     },
   },
@@ -1216,7 +1048,7 @@ export const SHOWROOM_AND_EXPO_GALLERY = [
       ar: 'جناح روك آرت A16: أسياخ الفايبر جلاس وعرض تحيا مصر 500 500',
     },
     caption: {
-      en: 'Booth display featuring non-metallic fiberglass reinforcement hoops & mats alongside the completed Tahya Misr 500 500 retaining project banner.',
+      en: 'Booth display of non-metallic fiberglass reinforcement hoops and mats beside the Tahya Misr 500 500 display.',
       ar: 'عرض أسياخ ولفات الفيبر جلاس اللامعدنية ولوحة مشروع حائط مستشفى تحيا مصر 500 500 ولوحات عينات الحجر.',
     },
   },
@@ -1228,7 +1060,7 @@ export const SHOWROOM_AND_EXPO_GALLERY = [
       ar: 'لوحات عينات التكسية المحمولة ونموذج حائط لوك ستون',
     },
     caption: {
-      en: 'Over 10 portable GRC stone and brick cladding sample boards displayed with a stacked grey & terracotta Lock Stone wall.',
+      en: 'Over 10 portable artificial stone and brick cladding sample boards displayed with a stacked grey & terracotta Lock Stone wall.',
       ar: 'مجموعة لوحات عينات الحجر والطوب الصناعي أمام نموذج حائط لوك ستون باللونين الرمادي والطوبي.',
     },
   },
@@ -1236,8 +1068,8 @@ export const SHOWROOM_AND_EXPO_GALLERY = [
     id: 'showroom-fountain',
     src: UPLOADED_PHOTOS.gardenFountainShowroom,
     title: {
-      en: 'Abu Rawash Outdoor Showroom — Tiered GRC Fountain',
-      ar: 'الحديقة العرضية بمصنع أبو رواش — نافورة جي آر سي الكلاسيكية',
+      en: 'Abu Rawash Outdoor Showroom — Tiered Garden Fountain',
+      ar: 'الحديقة العرضية بمصنع أبو رواش — نافورة حدائق متعددة الطبقات',
     },
     caption: {
       en: 'Cast-stone multi-tier courtyard fountain surrounded by interlocking walkways, stone mushroom lamps, and full-size cladding display boards.',
@@ -1248,24 +1080,12 @@ export const SHOWROOM_AND_EXPO_GALLERY = [
     id: 'showroom-rockwork',
     src: UPLOADED_PHOTOS.gardenRockworkShowroom,
     title: {
-      en: 'Sculpted GRC Artificial Rockwork Archway & Benches',
-      ar: 'مغارة وصخور جي آر سي الصناعية ومقاعد الحدائق',
+      en: 'GRC Artificial Rockwork & Benches',
+      ar: 'صخور جي آر سي الصناعية ومقاعد الحدائق',
     },
     caption: {
-      en: 'Hand-carved artificial limestone grotto and cast-stone benches at the Abu Rawash factory garden.',
-      ar: 'صخور صناعية منحوتة يدوياً مع مقاعد حدائق خرسانية كلاسيكية في معرض المصنع.',
-    },
-  },
-  {
-    id: 'brochure-curbs-grc',
-    src: UPLOADED_PHOTOS.brochureSlide10CurbsGrc,
-    title: {
-      en: 'Brochure Sheet 10 — Curbs (1001–1003), Interlocks (1005–1008) & GRC (2001–2009)',
-      ar: 'كتالوج البردورات (1001–1003) والإنترلوك (1005–1008) ومنتجات G.R.C (2001–2009)',
-    },
-    caption: {
-      en: 'Complete catalog index for precast concrete curbs (50×30×12/15 cm), interlocking pavers, fountains, fireplaces, and benches.',
-      ar: 'مقاسات البردورات الخرسانية وأشكال الإنترلوك ونماذج أعمال الجي آر سي المرقمة من 2001 إلى 2009.',
+      en: 'Artificial rock formations and garden benches at the Abu Rawash factory garden.',
+      ar: 'صخور صناعية ومقاعد حدائق في حديقة المصنع بأبو رواش.',
     },
   },
 ];
@@ -1307,12 +1127,12 @@ export function getProductMediaSlides(product) {
       src: product.image,
       badge: product.sku,
       title: {
-        en: `${product.sku} Official Rock Art Sample`,
-        ar: `صورة عينة ${product.sku} المعتمدة`,
+        en: `${product.sku} sample photo`,
+        ar: `صورة عينة ${product.sku}`,
       },
       caption: {
-        en: `${product.name.en} — real factory finish sample photographed in studio lighting.`,
-        ar: `${product.name.ar} — صورة عينة التصنيع الفعلية من مصنع روك آرت.`,
+        en: `${product.name.en} — sample photo.`,
+        ar: `${product.name.ar} — صورة العينة.`,
       },
     });
   } else if (product.sku === 'GARDEN-RANGE' && product.image) {
@@ -1322,8 +1142,8 @@ export function getProductMediaSlides(product) {
       src: product.image,
       badge: product.sku,
       title: {
-        en: `${product.sku} Official Rock Art Sample`,
-        ar: `صورة عينة ${product.sku} المعتمدة`,
+        en: `${product.sku} sample photo`,
+        ar: `صورة عينة ${product.sku}`,
       },
       caption: {
         en: `${product.name.en} — Abu Rawash showroom garden installation.`,
@@ -1413,17 +1233,17 @@ export function getProductMediaSlides(product) {
           ar: 'تماثيل وأعمال الجي آر سي الزخرفية للحدائق',
         },
         caption: {
-          en: 'Classical decorative cast-stone statues beside slate GRC wall cladding and Lock Stone sample wall.',
+          en: 'Classical decorative cast-stone statues beside slate-look wall cladding and Lock Stone sample wall.',
           ar: 'تماثيل حدائق كلاسيكية أمام واجهة الحجر الإردوازي وجدار عينات لوك ستون.',
         },
       },
       {
         id: 'garden-catalog-2001-2009',
         kind: 'photo',
-        src: UPLOADED_PHOTOS.brochureSlide10CurbsGrc,
+        src: UPLOADED_PHOTOS.catalogGrcCodes,
         title: {
-          en: 'Official GRC Product Index (Codes 2001–2009)',
-          ar: 'دليل منتجات G.R.C الرسمي (أكواد 2001–2009)',
+          en: 'GRC Product Catalog (Codes 2001–2009)',
+          ar: 'كتالوج منتجات الجي آر سي (أكواد 2001–2009)',
         },
         caption: {
           en: 'Brochure catalog showing benches (2001/2003/2009), fountains (2002/2007), fireplace mantel (2005), & rockwork (2006).',
@@ -1449,7 +1269,7 @@ export function getProductMediaSlides(product) {
       {
         id: 'planter-catalog-sheet',
         kind: 'photo',
-        src: UPLOADED_PHOTOS.brochureSlide10CurbsGrc,
+        src: UPLOADED_PHOTOS.catalogGrcCodes,
         title: {
           en: 'Precast Concrete & GRC Catalog Sheet',
           ar: 'نشرات الخرسانة سابقة الصب و G.R.C',
@@ -1465,14 +1285,14 @@ export function getProductMediaSlides(product) {
       {
         id: 'greek-brochure-6',
         kind: 'photo',
-        src: UPLOADED_PHOTOS.brochureSlide9GreekStoneGrid,
+        src: UPLOADED_PHOTOS.catalogGreekTextures,
         title: {
           en: 'Greek Manufactured Stone 6-Texture Reference',
           ar: 'مرجع الحجر اليوناني المُصنع — 6 خامات',
         },
         caption: {
-          en: 'Brochure Slide 9: Official 6-texture reference for weather-resistant Greek cladding walls, arches, and columns.',
-          ar: 'نشرات روك آرت (لوحة 9): تشكيلة الحجر اليوناني المقاوم للعوامل المناخية للواجهات والأعمدة والأقواس.',
+          en: 'Catalog sheet: six Greek artificial stone textures for wall cladding.',
+          ar: 'لوحة كتالوج: ست خامات من الحجر اليوناني المُصنع لتكسية الحوائط.',
         },
       },
       {
@@ -1507,7 +1327,7 @@ export function getProductMediaSlides(product) {
       {
         id: 'spanish-greek-slide',
         kind: 'photo',
-        src: UPLOADED_PHOTOS.brochureSlide9GreekStoneGrid,
+        src: UPLOADED_PHOTOS.catalogGreekTextures,
         title: {
           en: 'Exterior & Interior Cladding Textures',
           ar: 'خامات التجليد للواجهات الداخلية والخارجية',
@@ -1543,7 +1363,7 @@ export const UI_COPY = {
   ctaExplore: { en: 'Explore Lock Stone System', ar: 'اكتشف نظام لوك ستون' },
   claddingEyebrow: { en: 'Architectural Catalog', ar: 'كتالوج التكسية والحدائق' },
   claddingHeading: {
-    en: 'GRC Stone & Brick Cladding & Cast-Stone Planters',
+    en: 'Artificial Stone & Brick Cladding and Cast-Stone Planters',
     ar: 'ألواح التكسية الحجرية والطوب الصناعي والأصص الخرسانية',
   },
   claddingLead: {
@@ -1561,11 +1381,11 @@ export const UI_COPY = {
   projectsEyebrow: { en: 'Track Record', ar: 'سجل الأعمال' },
   projectsHeading: { en: 'Projects built across Egypt', ar: 'مشروعات منفذة في جميع أنحاء مصر' },
   clientsEyebrow: { en: 'Selected Clients & Partners', ar: 'من عملائنا وشركائنا' },
-  contactEyebrow: { en: 'Engineering & Sales', ar: 'الهندسة والمبيعات' },
-  contactHeading: { en: 'Start a Structural or Cladding Brief', ar: 'ابدأ دراسة مشروعك أو اطلب عرض سعر' },
+  contactEyebrow: { en: 'Sales & Inquiries', ar: 'المبيعات والاستفسارات' },
+  contactHeading: { en: 'Tell Us About Your Project', ar: 'اطلب عرض سعر لمشروعك' },
   contactLead: {
-    en: 'Share wall height, cladding area, or catalog SKUs for preliminary engineering review and pricing.',
-    ar: 'شاركنا أبعاد الحائط أو مساحة التكسية أو أكواد المنتجات للحصول على تقييم هندسي وعرض سعر مبدئي.',
+    en: 'Share the wall height, cladding area, or catalog SKUs and we will get back to you with a quote.',
+    ar: 'شاركنا أبعاد الحائط أو مساحة التكسية أو أكواد المنتجات لنرد عليك بعرض سعر.',
   },
   filterAll: { en: 'All (14)', ar: 'الكل (14)' },
   filterStone: { en: 'Stone Faces (9)', ar: 'أوجه حجرية (9)' },

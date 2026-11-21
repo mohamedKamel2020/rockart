@@ -1889,3 +1889,9 @@ html[lang="ar"] .client-marquee-name {
   .ls-steps-grid { grid-template-columns: 1fr; }
   .ls-slide { flex-basis: 86%; }
 }
+
+/* Home: Lock Stone photo group */
+.ls-home-photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-content: start; }
+.ls-home-photos figure { margin: 0; aspect-ratio: 1 / 1; overflow: hidden; border-radius: var(--radius-sm); background: #1c1b19; }
+.ls-home-photos img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.ls-home-photos figure:hover img { transform: scale(1.05); }
